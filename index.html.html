@@ -1,0 +1,2770 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloom & Bliss | Florist Store & One-Stop Celebration Provider</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        bloom: {
+                            light: '#fdf4f5',
+                            soft: '#f9e5e8',
+                            pink: '#e5989b',
+                            rose: '#d66874',
+                            dark: '#b5535f',
+                        },
+                        bliss: {
+                            light: '#f4f6f0',
+                            green: '#84a59d',
+                            sage: '#6b9080',
+                            dark: '#4a6b5d',
+                        },
+                        primary: '#2b2d42',
+                        cream: '#faf8f5'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #2b2d42;
+            background-color: #faf8f5;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fdf4f5; }
+        ::-webkit-scrollbar-thumb { background: #e5989b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #b5535f; }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(229, 152, 155, 0.2);
+        }
+
+        /* Dark Mode Global Overrides */
+        html.dark body {
+            background-color: #0f172a;
+            color: #f1f5f9;
+        }
+        html.dark .glass-nav {
+            background: rgba(15, 23, 42, 0.92);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        html.dark .bg-white {
+            background-color: #1e293b !important;
+        }
+        html.dark .bg-cream,
+        html.dark .bg-gray-50,
+        html.dark .bg-gray-50\/70 {
+            background-color: #0f172a !important;
+        }
+        html.dark .bg-gray-100 {
+            background-color: #334155 !important;
+        }
+        html.dark .bg-bloom-light,
+        html.dark .bg-bloom-light\/60,
+        html.dark .bg-bloom-light\/50,
+        html.dark .bg-bloom-light\/40,
+        html.dark .bg-bloom-light\/70 {
+            background-color: rgba(214, 104, 116, 0.16) !important;
+        }
+        html.dark .bg-bliss-light\/70,
+        html.dark .bg-bliss-light {
+            background-color: rgba(132, 165, 157, 0.16) !important;
+        }
+        html.dark .bg-amber-50\/70,
+        html.dark .bg-amber-50 {
+            background-color: rgba(217, 119, 6, 0.16) !important;
+        }
+        html.dark .bg-teal-50\/70 {
+            background-color: rgba(20, 184, 166, 0.16) !important;
+        }
+        html.dark .text-primary {
+            color: #f8fafc !important;
+        }
+        html.dark .text-gray-700,
+        html.dark .text-gray-800 {
+            color: #e2e8f0 !important;
+        }
+        html.dark .text-gray-600,
+        html.dark .text-gray-500 {
+            color: #94a3b8 !important;
+        }
+        html.dark .border-gray-100,
+        html.dark .border-gray-200,
+        html.dark .border-gray-300,
+        html.dark .border-bloom-soft {
+            border-color: #334155 !important;
+        }
+        html.dark .studio-bg {
+            background: radial-gradient(circle at 50% 35%, #1e293b 0%, #0f172a 70%, #090d16 100%) !important;
+        }
+        html.dark input,
+        html.dark select {
+            background-color: #0f172a !important;
+            color: #f8fafc !important;
+            border-color: #334155 !important;
+        }
+
+        .hover-card {
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -15px rgba(181, 83, 95, 0.22);
+        }
+
+        /* Studio Stage Grid & Lighting */
+        .studio-bg {
+            background: radial-gradient(circle at 50% 35%, #ffffff 0%, #fdf4f5 55%, #f3e8ea 100%);
+        }
+
+        /* Realistic LED Glow Animation */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.35; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.25); filter: drop-shadow(0 0 6px #fde047); }
+        }
+        .led-dot {
+            animation: twinkle 2s infinite ease-in-out;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        .float-slow {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+
+        .stamp-circle {
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .stamp-active {
+            background: linear-gradient(135deg, #e5989b 0%, #b5535f 100%);
+            color: white !important;
+            border-color: transparent !important;
+            box-shadow: 0 8px 20px -4px rgba(181, 83, 95, 0.5);
+            transform: scale(1.04);
+        }
+
+        #modal-overlay {
+            display: none;
+            backdrop-filter: blur(6px);
+        }
+        #modal-overlay.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-bloom-rose selection:text-white">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-primary text-white text-xs py-2 px-4 text-center font-medium tracking-wide">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <span class="mx-auto sm:mx-0 flex items-center gap-1.5">
+                <i class="ph-fill ph-sparkle text-bloom-pink"></i>
+                <strong>Bloom & Bliss Florist Store</strong> — One-Stop Celebration Provider (Fresh, Artificial, Money, Doll & Hampers)
+            </span>
+            <div class="hidden sm:flex items-center gap-4 text-[11px] text-gray-300">
+                <a href="https://instagram.com/bloomnbliss_florist" target="_blank" class="hover:text-bloom-pink flex items-center gap-1">
+                    <i class="ph-fill ph-instagram-logo"></i> @bloomnbliss_florist
+                </a>
+                <span>•</span>
+                <a href="https://wa.me/6288989195951" target="_blank" class="hover:text-green-400 flex items-center gap-1">
+                    <i class="ph-fill ph-whatsapp-logo text-green-400"></i> +62 889-8919-5951 (Dimas)
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <nav class="sticky top-0 w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Brand Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-bloom-pink to-bloom-dark flex items-center justify-center text-white shadow-md">
+                        <i class="ph-fill ph-flower-lotus text-2xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif font-bold text-xl leading-none tracking-wide text-primary">Bloom & Bliss</span>
+                        <span class="text-[10px] text-bloom-dark uppercase tracking-widest leading-none mt-1 font-bold">Florist & Gift Studio</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Links -->
+                <div class="hidden lg:flex space-x-7 items-center">
+                    <a href="#about" class="text-sm font-semibold text-gray-700 hover:text-bloom-rose transition-colors">Profil & Visi</a>
+                    <a href="#products" class="text-sm font-semibold text-gray-700 hover:text-bloom-rose transition-colors">Katalog & Harga</a>
+                    <a href="#diy" class="text-sm font-semibold text-bloom-dark bg-bloom-light px-3.5 py-1.5 rounded-full hover:bg-bloom-soft transition-colors flex items-center gap-1.5">
+                        <i class="ph-fill ph-magic-wand"></i> Studio Simulasi DIY
+                    </a>
+                    <a href="#loyalty" class="text-sm font-semibold text-gray-700 hover:text-bloom-rose transition-colors">Stamp Loyalty</a>
+                    <a href="#team" class="text-sm font-semibold text-gray-700 hover:text-bloom-rose transition-colors">Tim Kami</a>
+                </div>
+
+                <!-- Action CTA & Dark Mode Toggle -->
+                <div class="hidden md:flex items-center gap-3">
+                    <button onclick="toggleTheme()" id="theme-toggle-desktop" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-700 hover:border-bloom-rose hover:text-bloom-rose transition-all shadow-sm" title="Ubah Mode Gelap / Terang">
+                        <i class="ph-fill ph-moon text-lg" id="theme-icon-desktop"></i>
+                    </button>
+                    <a href="#booking" class="bg-bloom-rose text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-bloom-dark transition-all shadow-md flex items-center gap-1.5">
+                        <i class="ph-bold ph-calendar-check text-base"></i> Reservasi O2O
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger & Theme Button -->
+                <div class="lg:hidden flex items-center gap-2">
+                    <button onclick="toggleTheme()" class="p-2.5 rounded-xl border border-gray-200 text-gray-700 hover:bg-bloom-light hover:text-bloom-rose transition-colors" aria-label="Toggle Dark Mode">
+                        <i class="ph-fill ph-moon text-xl" id="theme-icon-mobile"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2 rounded-xl text-gray-700 hover:bg-bloom-light hover:text-bloom-rose transition-colors" aria-label="Buka Menu">
+                        <i class="ph ph-list text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute w-full shadow-2xl">
+            <div class="px-4 pt-3 pb-6 space-y-1.5">
+                <a href="#about" class="mobile-link block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-bloom-light hover:text-bloom-rose rounded-xl">Profil & Filosofi</a>
+                <a href="#products" class="mobile-link block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-bloom-light hover:text-bloom-rose rounded-xl">Katalog & Harga Resmi</a>
+                <a href="#diy" class="mobile-link block px-4 py-2.5 text-sm font-bold text-bloom-dark bg-bloom-light rounded-xl">✨ Studio Simulasi DIY Realistis</a>
+                <a href="#loyalty" class="mobile-link block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-bloom-light hover:text-bloom-rose rounded-xl">Program Stamp Loyalty</a>
+                <a href="#team" class="mobile-link block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-bloom-light hover:text-bloom-rose rounded-xl">Tim Kami</a>
+                <a href="#booking" class="mobile-link block px-4 py-3 mt-3 text-center text-sm font-bold bg-bloom-rose text-white rounded-full shadow-md">Reservasi O2O & WhatsApp</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden">
+        <div class="absolute top-10 left-0 w-96 h-96 bg-bloom-pink/20 rounded-full filter blur-3xl -z-10"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-bliss-green/20 rounded-full filter blur-3xl -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Text Column -->
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-white border border-bloom-pink/30 shadow-sm rounded-full px-4 py-1.5 mb-6">
+                        <span class="w-2 h-2 rounded-full bg-bloom-rose animate-ping"></span>
+                        <span class="text-bloom-dark font-bold tracking-wider text-xs uppercase">Interactive Digital Hub • Online-to-Offline (O2O)</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold leading-tight text-primary mb-6">
+                        Bloomed with <span class="text-bloom-rose italic">Love</span>,<br>
+                        Wrapped in <span class="text-bliss-sage italic">Bliss</span>
+                    </h1>
+                    <p class="text-base sm:text-lg text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Hadirkan kebahagiaan sejati di setiap momen wisuda, ulang tahun, hari raya, hingga pernikahan. Nikmati pengalaman <strong>DIY Florist</strong> pertama di mana Anda bebas memilih dan merangkai buket segar, artificial, uang, boneka, maupun hampers sesuai budget bersama <em>florist guide</em> kami.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+                        <a href="#diy" class="bg-bloom-rose text-white px-8 py-4 rounded-full font-bold hover:bg-bloom-dark transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5 flex items-center justify-center gap-2.5">
+                            <i class="ph-fill ph-palette text-xl"></i> Coba Simulasi Buket Nyata
+                        </a>
+                        <a href="#products" class="bg-white border-2 border-gray-200 text-primary px-8 py-4 rounded-full font-bold hover:border-bloom-rose hover:text-bloom-rose transition-all flex items-center justify-center gap-2">
+                            <i class="ph-bold ph-shopping-bag text-xl"></i> Katalog & Daftar Harga
+                        </a>
+                    </div>
+
+                    <!-- Quick Price Highlights from PDF -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-gray-200/80 max-w-lg mx-auto lg:mx-0">
+                        <div class="text-left">
+                            <p class="text-xs text-gray-500 font-semibold uppercase">Craftday Promo</p>
+                            <p class="text-xl font-serif font-bold text-bloom-rose">Rp 5.000</p>
+                            <p class="text-[11px] text-bliss-dark font-medium">Bunga 1 Tangkai (Wrapping +10k)</p>
+                        </div>
+                        <div class="text-left border-l border-gray-200 pl-4">
+                            <p class="text-xs text-gray-500 font-semibold uppercase">Varian Produk</p>
+                            <p class="text-xl font-serif font-bold text-primary">7 Kategori</p>
+                            <p class="text-[11px] text-bloom-dark font-medium">Craftday, Buket, Uang, Hampers</p>
+                        </div>
+                        <div class="text-left border-l border-gray-200 pl-4">
+                            <p class="text-xs text-gray-500 font-semibold uppercase">Program Member</p>
+                            <p class="text-xl font-serif font-bold text-primary">Free Buket</p>
+                            <p class="text-[11px] text-gray-500 font-medium">5 Stamp Loyalty Digital</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Showcase Visual Column -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Main Hero Image Card -->
+                        <div class="rounded-[36px] overflow-hidden shadow-2xl border-4 border-white relative group bg-bloom-light">
+                            <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=900&q=85" 
+                                 onerror="this.onerror=null; this.src=getFallbackDataUri('Bouquet Studio', '#d66874');"
+                                 alt="Rangkaian Buket Bloom & Bliss" 
+                                 class="w-full h-[420px] sm:h-[460px] object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-6 text-white">
+                                <span class="bg-bloom-rose/90 backdrop-blur-sm text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full w-fit mb-2">
+                                    Signature Collection
+                                </span>
+                                <h3 class="font-serif text-2xl font-bold">Custom Bouquet & Hampers Studio</h3>
+                                <p class="text-xs text-gray-200 mt-1">Tersedia Craftday 5K, Small, Medium, Large hingga Dekorasi Wedding</p>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge 1: Real Price Tag -->
+                        <div class="absolute -top-4 left-2 sm:-left-6 bg-white p-3.5 sm:p-4 rounded-2xl shadow-xl border border-bloom-soft flex items-center gap-3 float-slow">
+                            <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-bloom-light text-bloom-rose flex items-center justify-center text-2xl">
+                                <i class="ph-fill ph-flower-tulip"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] sm:text-[11px] font-bold text-gray-400 uppercase">Fresh Rose Bouquet</p>
+                                <p class="text-xs sm:text-sm font-bold text-primary">Rp 35rb – Rp 60rb</p>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge 2: Hands-on Experience -->
+                        <div class="absolute -bottom-4 right-2 sm:-right-6 bg-white p-3.5 sm:p-4 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-3 float-slow" style="animation-delay: 1.5s;">
+                            <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-bliss-light text-bliss-dark flex items-center justify-center text-2xl">
+                                <i class="ph-fill ph-hands-clapping"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] sm:text-[11px] font-bold text-gray-400 uppercase">DIY Florist Guide</p>
+                                <p class="text-xs sm:text-sm font-bold text-primary">Bebas Rangkai Sendiri</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT, PHILOSOPHY & TARGET MARKET (Hal. 3, 5, 7, 11) -->
+    <section id="about" class="py-20 bg-white border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-bloom-rose font-bold tracking-widest text-xs uppercase block mb-2">Company Profile & Tujuan Usaha</span>
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-primary mb-4">Mengapa Memilih Bloom & Bliss?</h2>
+                <p class="text-gray-600 text-base leading-relaxed">
+                    Nama <strong class="text-bloom-rose">Bloom</strong> (mekar & kualitas bunga segar) dan <strong class="text-bliss-sage">Bliss</strong> (kebahagiaan sempurna) merepresentasikan filosofi kami bahwa setiap rangkaian hadiah yang dirancang secara personal membawa nilai emosional mendalam bagi penerimanya.
+                </p>
+            </div>
+
+            <!-- 4 Pillars from Page 11 (Tujuan Usaha - Fixed Icons with Inline SVG + Phosphor) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div class="bg-bloom-light/60 p-7 rounded-3xl border border-bloom-soft hover-card">
+                    <div class="w-12 h-12 rounded-2xl bg-white text-bloom-rose flex items-center justify-center text-2xl shadow-sm mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-primary mb-2">Standardisasi & Custom</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed">
+                        Menyediakan katalog buket siap pakai (<em>ready-to-pick</em>) dengan ukuran Small, Medium, Large yang terstandarisasi sekaligus layanan DIY kustom sesuai budget.
+                    </p>
+                </div>
+
+                <div class="bg-bliss-light/70 p-7 rounded-3xl border border-bliss-green/20 hover-card">
+                    <div class="w-12 h-12 rounded-2xl bg-white text-bliss-dark flex items-center justify-center text-2xl shadow-sm mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-primary mb-2">Diversifikasi Varian</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed">
+                        Tidak hanya bunga segar (<em>fresh flower</em>), namun juga <em>artificial flower</em> tahan lama, buket uang (<em>money bouquet</em>), buket snack/cokelat, dan boneka wisuda.
+                    </p>
+                </div>
+
+                <div class="bg-amber-50/70 p-7 rounded-3xl border border-amber-100 hover-card">
+                    <div class="w-12 h-12 rounded-2xl bg-white text-amber-600 flex items-center justify-center text-2xl shadow-sm mb-5">
+                        <i class="ph-fill ph-gift"></i>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-primary mb-2">Hadiah Terpadu (Gift Sets)</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed">
+                        Paket hampers & parcel hari raya dalam keranjang rotan/box kayu berisi mawar segar, kue kering, sirup, lilin aromaterapi, hingga dekorasi acara.
+                    </p>
+                </div>
+
+                <div class="bg-teal-50/70 p-7 rounded-3xl border border-teal-100 hover-card">
+                    <div class="w-12 h-12 rounded-2xl bg-white text-teal-600 flex items-center justify-center text-2xl shadow-sm mb-5">
+                        <i class="ph-fill ph-sparkle"></i>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-primary mb-2">Kemasan Paper Flower Estetik</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed">
+                        Menggunakan balutan <em>Paper Flower</em> pilihan yang rapi dan tahan air dengan paduan pita manis berwarna Pink maupun Ungu serta kartu ucapan personal.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Target Market Pills (Hal. 5) -->
+            <div class="bg-gray-50 rounded-3xl p-6 sm:p-8 border border-gray-100">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="text-center md:text-left">
+                        <span class="text-xs font-bold uppercase tracking-wider text-bliss-dark">Segmen Pasar Utama Kami</span>
+                        <h4 class="text-xl font-serif font-bold text-primary mt-1">Hadir untuk Setiap Momen Selebrasi Anda</h4>
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-2.5">
+                        <span class="px-4 py-2 rounded-full bg-white border border-gray-200 text-xs font-semibold text-gray-700 flex items-center gap-1.5 shadow-sm">
+                            🎓 Pelajar & Mahasiswa (Wisuda / Kasmaran)
+                        </span>
+                        <span class="px-4 py-2 rounded-full bg-white border border-gray-200 text-xs font-semibold text-gray-700 flex items-center gap-1.5 shadow-sm">
+                            💑 Pasangan Muda & Dewasa (Anniversary)
+                        </span>
+                        <span class="px-4 py-2 rounded-full bg-white border border-gray-200 text-xs font-semibold text-gray-700 flex items-center gap-1.5 shadow-sm">
+                            🕌 Keluarga & Konsumen Hari Raya
+                        </span>
+                        <span class="px-4 py-2 rounded-full bg-white border border-gray-200 text-xs font-semibold text-gray-700 flex items-center gap-1.5 shadow-sm">
+                            💒 Wedding & Birthday Event Organizer
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFICIAL PRODUCT CATALOG & REAL PRICING (Hal. 12 - 17) -->
+    <section id="products" class="py-24 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+                <div>
+                    <span class="text-bloom-rose font-bold tracking-widest text-xs uppercase block mb-2">Katalog Resmi & Standar Komposisi</span>
+                    <h2 class="text-3xl lg:text-5xl font-serif font-bold text-primary">Pilihan Produk & Harga Jual</h2>
+                </div>
+                <p class="text-gray-600 max-w-md text-sm leading-relaxed">
+                    Seluruh harga dan rincian bahan di bawah ini mengacu langsung pada standar produksi resmi <strong>Bloom & Bliss</strong>. Klik ukuran untuk melihat perubahan komposisi dan harga.
+                </p>
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div class="flex flex-wrap gap-2 mb-10" id="catalog-filters">
+                <button onclick="filterCatalog('all')" class="cat-btn active bg-primary text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all">Semua Produk (7)</button>
+                <button onclick="filterCatalog('craftday')" class="cat-btn bg-bloom-light text-bloom-dark border border-bloom-pink hover:bg-bloom-rose hover:text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all">🌸 Craftday 1 Tangkai (Only 5K!)</button>
+                <button onclick="filterCatalog('bouquet')" class="cat-btn bg-white text-gray-600 hover:bg-bloom-light px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider border border-gray-200 transition-all">Buket Bunga & Boneka</button>
+                <button onclick="filterCatalog('money')" class="cat-btn bg-white text-gray-600 hover:bg-bloom-light px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider border border-gray-200 transition-all">Buket Uang</button>
+                <button onclick="filterCatalog('hampers')" class="cat-btn bg-white text-gray-600 hover:bg-bloom-light px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider border border-gray-200 transition-all">Hampers & Parcel</button>
+                <button onclick="filterCatalog('event')" class="cat-btn bg-white text-gray-600 hover:bg-bloom-light px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider border border-gray-200 transition-all">Dekorasi Wedding & Eco</button>
+            </div>
+
+            <!-- Product Grid (7 Detailed Cards Dynamically Controlled) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
+                <!-- Populated via JS from exact PDF data -->
+            </div>
+        </div>
+    </section>
+
+    <!-- REALISTIC INTERACTIVE DIY SIMULATOR (Sesuai Produk yang Dijual) -->
+    <section id="diy" class="py-24 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="bg-bloom-light text-bloom-dark px-4 py-1.5 rounded-full font-bold tracking-wider text-xs uppercase inline-block mb-3">
+                    ✨ Interactive Visual Bouquet & Craftday Builder
+                </span>
+                <h2 class="text-3xl lg:text-5xl font-serif font-bold text-primary mb-4">Studio Simulasi Desain Nyata</h2>
+                <p class="text-gray-600 text-base">
+                    Kini hadir mode spesial <strong>Bloom n Bliss Craftday (Craft Your Own Bloom)</strong>! Anda dapat merancang <strong>Buket Bunga 1 Tangkai (Only 5K!)</strong> dengan pilihan bunga <em>Gerbera, Rose, Peacock Aster, atau Krisan</em> serta opsi <em>Wrapping (+10K)</em>, maupun memilih buket reguler dan hampers.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-[36px] border border-gray-200 shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+                
+                <!-- LEFT PANEL: SIMULATOR CONTROLS (7 Cols) -->
+                <div class="lg:col-span-6 p-6 sm:p-10 bg-gray-50/70 border-b lg:border-b-0 lg:border-r border-gray-200 space-y-7">
+                    
+                    <!-- Step 1: Pilih Produk Utama -->
+                    <div>
+                        <label class="flex items-center justify-between text-xs font-bold text-gray-800 uppercase tracking-wider mb-3">
+                            <span class="flex items-center gap-2">
+                                <span class="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                                Pilih Lini Produk Utama
+                            </span>
+                            <span class="text-bloom-rose font-semibold">Sesuai Katalog & Poster Resmi</span>
+                        </label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="sim-product-types">
+                            <button type="button" onclick="selectSimCategory('craftday')" data-cat="craftday" class="sim-cat-btn active p-3 rounded-2xl border-2 border-bloom-rose bg-bloom-light/70 text-left transition-all relative overflow-hidden">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-lg">🌼</span>
+                                    <span class="text-[10px] font-extrabold bg-bloom-rose text-white px-2 py-0.5 rounded-full">ONLY 5K!</span>
+                                </div>
+                                <p class="font-bold text-xs text-primary">Craftday 1 Tangkai</p>
+                                <p class="text-[10px] text-bloom-dark font-semibold">Gerbera/Rose/Aster/Krisan</p>
+                            </button>
+
+                            <button type="button" onclick="selectSimCategory('fresh')" data-cat="fresh" class="sim-cat-btn p-3 rounded-2xl border-2 border-gray-200 bg-white hover:border-bloom-pink text-left transition-all">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-lg">🌹</span>
+                                    <span class="text-[10px] font-bold bg-gray-100 px-2 py-0.5 rounded-full text-bloom-dark">Rp35k-60k</span>
+                                </div>
+                                <p class="font-bold text-xs text-primary">Buket Bunga Asli</p>
+                                <p class="text-[10px] text-gray-500">Mawar Segar Premium</p>
+                            </button>
+
+                            <button type="button" onclick="selectSimCategory('artificial')" data-cat="artificial" class="sim-cat-btn p-3 rounded-2xl border-2 border-gray-200 bg-white hover:border-bloom-pink text-left transition-all">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-lg">🌸</span>
+                                    <span class="text-[10px] font-bold bg-gray-100 px-2 py-0.5 rounded-full text-gray-600">Rp30k-50k</span>
+                                </div>
+                                <p class="font-bold text-xs text-primary">Bunga Artificial</p>
+                                <p class="text-[10px] text-gray-500">Awet & Tahan Lama</p>
+                            </button>
+
+                            <button type="button" onclick="selectSimCategory('money')" data-cat="money" class="sim-cat-btn p-3 rounded-2xl border-2 border-gray-200 bg-white hover:border-bloom-pink text-left transition-all">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-lg">💵</span>
+                                    <span class="text-[10px] font-bold bg-gray-100 px-2 py-0.5 rounded-full text-gray-600">Rp32k-43k</span>
+                                </div>
+                                <p class="font-bold text-xs text-primary">Buket Uang (OPP)</p>
+                                <p class="text-[10px] text-gray-500">10 / 15 / 20 Lembar Slot</p>
+                            </button>
+
+                            <button type="button" onclick="selectSimCategory('doll')" data-cat="doll" class="sim-cat-btn p-3 rounded-2xl border-2 border-gray-200 bg-white hover:border-bloom-pink text-left transition-all">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-lg">🎓</span>
+                                    <span class="text-[10px] font-bold bg-gray-100 px-2 py-0.5 rounded-full text-gray-600">Rp60k-150k</span>
+                                </div>
+                                <p class="font-bold text-xs text-primary">Buket Boneka Wisuda</p>
+                                <p class="text-[10px] text-gray-500">1 / 3 / 5 Boneka + Bunga</p>
+                            </button>
+
+                            <button type="button" onclick="selectSimCategory('hampers')" data-cat="hampers" class="sim-cat-btn p-3 rounded-2xl border-2 border-gray-200 bg-white hover:border-bloom-pink text-left transition-all">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-lg">🧺</span>
+                                    <span class="text-[10px] font-bold bg-amber-50 px-2 py-0.5 rounded-full text-amber-700">Rp50k-500k</span>
+                                </div>
+                                <p class="font-bold text-xs text-primary">Bouquet Hampers</p>
+                                <p class="text-[10px] text-gray-500">Keranjang Rotan & Gift</p>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Pilih Ukuran & Komposisi (Dinamis sesuai produk) -->
+                    <div>
+                        <label class="flex items-center justify-between text-xs font-bold text-gray-800 uppercase tracking-wider mb-3">
+                            <span class="flex items-center gap-2">
+                                <span class="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
+                                <span id="step2-title">Pilih Ukuran & Komposisi Standar</span>
+                            </span>
+                            <span id="sim-size-spec-badge" class="text-[11px] font-semibold text-bliss-dark"></span>
+                        </label>
+                        
+                        <!-- Ukuran Reguler (Untuk Buket Asli, Artificial, Uang, Boneka, Hampers) -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="sim-size-options">
+                            <!-- Rendered dynamically by JS -->
+                        </div>
+
+                        <!-- Custom Builder Bebas Tanpa Batas Tangkai (Khusus Craftday) -->
+                        <div id="craftday-unlimited-builder" class="hidden space-y-4 bg-white p-4 sm:p-5 rounded-2xl border-2 border-bloom-pink/60 shadow-sm">
+                            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gray-100 pb-3">
+                                <div>
+                                    <span class="text-xs font-bold text-primary block">🌸 Pilih & Mix Bunga Sesukamu (Tanpa Batas Tangkai!)</span>
+                                    <span class="text-[11px] text-gray-500">Bebas tentukan jumlah tangkai per bunga — <strong>Rp 5.000 / tangkai</strong></span>
+                                </div>
+                                <span id="craftday-total-stems-badge" class="bg-bloom-rose text-white px-3 py-1 rounded-full text-xs font-bold shadow-sm">
+                                    Total: 1 Tangkai
+                                </span>
+                            </div>
+
+                            <!-- 4 Jenis Bunga Craftday Stepper + Input Langsung -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <!-- Gerbera -->
+                                <div class="flex items-center justify-between p-3 rounded-xl bg-bloom-light/40 border border-bloom-soft">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="text-2xl">🌼</span>
+                                        <div>
+                                            <p class="text-xs font-bold text-primary">Gerbera</p>
+                                            <p class="text-[10px] text-bloom-dark font-semibold">Rp 5.000 / tangkai</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <button type="button" onclick="adjustCraftdayStem('gerbera', -1)" class="w-7 h-7 rounded-lg bg-white border border-gray-300 text-primary font-bold hover:bg-bloom-rose hover:text-white transition-colors flex items-center justify-center">-</button>
+                                        <input type="number" id="stem-input-gerbera" min="0" value="1" oninput="setCraftdayStem('gerbera', this.value)" class="w-12 text-center py-1 rounded-lg border border-gray-200 text-xs font-bold text-primary focus:outline-none focus:ring-2 focus:ring-bloom-rose">
+                                        <button type="button" onclick="adjustCraftdayStem('gerbera', 1)" class="w-7 h-7 rounded-lg bg-primary text-white font-bold hover:bg-bloom-rose transition-colors flex items-center justify-center">+</button>
+                                    </div>
+                                </div>
+
+                                <!-- Rose -->
+                                <div class="flex items-center justify-between p-3 rounded-xl bg-bloom-light/40 border border-bloom-soft">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="text-2xl">🌹</span>
+                                        <div>
+                                            <p class="text-xs font-bold text-primary">Rose (Mawar)</p>
+                                            <p class="text-[10px] text-bloom-dark font-semibold">Rp 5.000 / tangkai</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <button type="button" onclick="adjustCraftdayStem('rose', -1)" class="w-7 h-7 rounded-lg bg-white border border-gray-300 text-primary font-bold hover:bg-bloom-rose hover:text-white transition-colors flex items-center justify-center">-</button>
+                                        <input type="number" id="stem-input-rose" min="0" value="0" oninput="setCraftdayStem('rose', this.value)" class="w-12 text-center py-1 rounded-lg border border-gray-200 text-xs font-bold text-primary focus:outline-none focus:ring-2 focus:ring-bloom-rose">
+                                        <button type="button" onclick="adjustCraftdayStem('rose', 1)" class="w-7 h-7 rounded-lg bg-primary text-white font-bold hover:bg-bloom-rose transition-colors flex items-center justify-center">+</button>
+                                    </div>
+                                </div>
+
+                                <!-- Peacock Aster -->
+                                <div class="flex items-center justify-between p-3 rounded-xl bg-bloom-light/40 border border-bloom-soft">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="text-2xl">💜</span>
+                                        <div>
+                                            <p class="text-xs font-bold text-primary">Peacock Aster</p>
+                                            <p class="text-[10px] text-bloom-dark font-semibold">Rp 5.000 / tangkai</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <button type="button" onclick="adjustCraftdayStem('aster', -1)" class="w-7 h-7 rounded-lg bg-white border border-gray-300 text-primary font-bold hover:bg-bloom-rose hover:text-white transition-colors flex items-center justify-center">-</button>
+                                        <input type="number" id="stem-input-aster" min="0" value="0" oninput="setCraftdayStem('aster', this.value)" class="w-12 text-center py-1 rounded-lg border border-gray-200 text-xs font-bold text-primary focus:outline-none focus:ring-2 focus:ring-bloom-rose">
+                                        <button type="button" onclick="adjustCraftdayStem('aster', 1)" class="w-7 h-7 rounded-lg bg-primary text-white font-bold hover:bg-bloom-rose transition-colors flex items-center justify-center">+</button>
+                                    </div>
+                                </div>
+
+                                <!-- Krisan -->
+                                <div class="flex items-center justify-between p-3 rounded-xl bg-bloom-light/40 border border-bloom-soft">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="text-2xl">🌸</span>
+                                        <div>
+                                            <p class="text-xs font-bold text-primary">Krisan</p>
+                                            <p class="text-[10px] text-bloom-dark font-semibold">Rp 5.000 / tangkai</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <button type="button" onclick="adjustCraftdayStem('krisan', -1)" class="w-7 h-7 rounded-lg bg-white border border-gray-300 text-primary font-bold hover:bg-bloom-rose hover:text-white transition-colors flex items-center justify-center">-</button>
+                                        <input type="number" id="stem-input-krisan" min="0" value="0" oninput="setCraftdayStem('krisan', this.value)" class="w-12 text-center py-1 rounded-lg border border-gray-200 text-xs font-bold text-primary focus:outline-none focus:ring-2 focus:ring-bloom-rose">
+                                        <button type="button" onclick="adjustCraftdayStem('krisan', 1)" class="w-7 h-7 rounded-lg bg-primary text-white font-bold hover:bg-bloom-rose transition-colors flex items-center justify-center">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Opsi Wrapping Craftday (Tanpa Wrapping Rp 0 vs Full Wrapping +10K) -->
+                            <div class="pt-2 border-t border-gray-100">
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-gray-500 block mb-2">Pilih Opsi Kemasan Craftday:</span>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                    <button type="button" id="btn-craft-nowrap" onclick="setCraftdayWrapping(false)" class="p-3 rounded-xl border-2 border-gray-200 bg-white text-left transition-all flex items-center justify-between">
+                                        <div>
+                                            <p class="text-xs font-bold text-primary">Plastik Sleeve Bening + Pita</p>
+                                            <p class="text-[10px] text-gray-500">Tanpa Paper Flower</p>
+                                        </div>
+                                        <span class="text-xs font-extrabold text-emerald-600">+Rp 0</span>
+                                    </button>
+                                    <button type="button" id="btn-craft-wrap" onclick="setCraftdayWrapping(true)" class="p-3 rounded-xl border-2 border-primary bg-primary text-white text-left transition-all flex items-center justify-between shadow-sm">
+                                        <div>
+                                            <p class="text-xs font-bold">Full Paper Flower</p>
+                                            <p class="text-[10px] text-gray-300">Paper Flower Estetik + Pita Satin</p>
+                                        </div>
+                                        <span class="text-xs font-extrabold text-bloom-pink">+Rp 10.000</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Pilih Warna Paper Flower / Kemasan & Pita -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="flex items-center gap-2 text-xs font-bold text-gray-800 uppercase tracking-wider mb-3">
+                                <span class="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">3</span>
+                                Warna Pita & Paper Flower
+                            </label>
+                            <div class="flex flex-wrap gap-3" id="sim-wrapper-colors">
+                                <button type="button" onclick="selectWrapperColor('#f4acb7', '#d88c9a', 'Pink')" class="wrap-swatch ring-2 ring-offset-2 ring-primary px-4 py-2 rounded-full bg-[#f4acb7] text-primary font-bold text-xs shadow-sm flex items-center gap-2" title="Pink">
+                                    <span class="w-4 h-4 rounded-full bg-[#d88c9a] border border-white"></span> Pink
+                                </button>
+                                <button type="button" onclick="selectWrapperColor('#cdb4db', '#9d4edd', 'Ungu')" class="wrap-swatch px-4 py-2 rounded-full bg-[#cdb4db] text-primary font-bold text-xs shadow-sm flex items-center gap-2" title="Ungu">
+                                    <span class="w-4 h-4 rounded-full bg-[#9d4edd] border border-white"></span> Ungu
+                                </button>
+                            </div>
+                            <p class="text-[11px] text-gray-500 mt-2">Warna Pita Terpilih: <strong id="selected-wrap-name" class="text-primary">Pink</strong></p>
+                        </div>
+
+                        <!-- Money Nominal / Flower Tone Option -->
+                        <div id="subvariant-container">
+                            <label class="flex items-center gap-2 text-xs font-bold text-gray-800 uppercase tracking-wider mb-3">
+                                <span class="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">4</span>
+                                <span id="subvariant-label">Nuansa Warna Bunga / Isi</span>
+                            </label>
+                            <select id="sim-subvariant" onchange="renderSimulator()" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 bg-white text-xs font-semibold text-primary focus:outline-none focus:ring-2 focus:ring-bloom-rose">
+                                <!-- Populated dynamically -->
+                            </select>
+                            <p class="text-[10px] text-gray-400 mt-1.5" id="subvariant-helper">Sesuaikan nuansa mahkota bunga atau tampilan simulasi.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Add-ons -->
+                    <div>
+                        <label class="flex items-center justify-between text-xs font-bold text-gray-800 uppercase tracking-wider mb-3">
+                            <span class="flex items-center gap-2">
+                                <span class="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">5</span>
+                                Tambahan Kustom Gift
+                            </span>
+                            <span class="text-[11px] text-gray-400 font-normal">Opsional (Mix Combo)</span>
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                            <label class="cursor-pointer flex items-center justify-between p-3 bg-white border border-gray-200 rounded-xl hover:border-bloom-pink transition-all">
+                                <div class="flex items-center gap-2.5">
+                                    <input type="checkbox" class="sim-addon w-4 h-4 accent-bloom-rose rounded" value="choco" data-price="15000" data-name="Cokelat Silverqueen/Ferrero" onchange="renderSimulator()">
+                                    <span class="text-xs font-semibold text-gray-700">🍫 Extra Cokelat</span>
+                                </div>
+                                <span class="text-[11px] font-bold text-bloom-dark">+Rp15rb</span>
+                            </label>
+
+                            <label class="cursor-pointer flex items-center justify-between p-3 bg-white border border-gray-200 rounded-xl hover:border-bloom-pink transition-all">
+                                <div class="flex items-center gap-2.5">
+                                    <input type="checkbox" class="sim-addon w-4 h-4 accent-bloom-rose rounded" value="led" data-price="10000" data-name="Lampu Fairy LED Warm" onchange="renderSimulator()">
+                                    <span class="text-xs font-semibold text-gray-700">✨ Lampu Fairy LED</span>
+                                </div>
+                                <span class="text-[11px] font-bold text-bloom-dark">+Rp10rb</span>
+                            </label>
+
+                            <label class="cursor-pointer flex items-center justify-between p-3 bg-white border border-gray-200 rounded-xl hover:border-bloom-pink transition-all">
+                                <div class="flex items-center gap-2.5">
+                                    <input type="checkbox" class="sim-addon w-4 h-4 accent-bloom-rose rounded" value="party" data-price="25000" data-name="Party Starter Kit Mini" onchange="renderSimulator()">
+                                    <span class="text-xs font-semibold text-gray-700">🎉 Party Starter Kit</span>
+                                </div>
+                                <span class="text-[11px] font-bold text-bloom-dark">+Rp25rb</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Step 6: Tulis Kartu Ucapan (Termasuk Gratis di HPP) -->
+                    <div>
+                        <label class="flex items-center justify-between text-xs font-bold text-gray-800 uppercase tracking-wider mb-2">
+                            <span>💌 Teks Kartu Ucapan (Gratis Termasuk Paket)</span>
+                            <span class="text-[11px] text-green-600 font-semibold">Live Preview di Buket</span>
+                        </label>
+                        <input type="text" id="sim-greeting-input" maxlength="42" value="Happy Graduation! Proud of You 🎓" oninput="renderSimulator()"
+                               class="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-xs font-medium text-primary focus:outline-none focus:ring-2 focus:ring-bloom-rose"
+                               placeholder="Tulis ucapan singkat (maks 42 karakter)...">
+                    </div>
+                </div>
+
+                <!-- RIGHT PANEL: REALISTIC VISUAL STAGE & SUMMARY (6 Cols) -->
+                <div class="lg:col-span-6 flex flex-col justify-between studio-bg p-6 sm:p-8 relative">
+                    
+                    <!-- Top Stage Bar: View Mode Toggle -->
+                    <div class="flex flex-wrap items-center justify-between gap-2 z-20 mb-2">
+                        <div class="flex items-center gap-2 bg-white/90 backdrop-blur px-3.5 py-1.5 rounded-full border border-gray-200 shadow-sm">
+                            <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span>
+                            <span class="text-[11px] font-bold text-primary uppercase tracking-wider" id="stage-product-title">Bouquet Bunga Asli - Medium</span>
+                        </div>
+
+                        <div class="inline-flex rounded-full bg-white p-1 border border-gray-200 shadow-sm">
+                            <button type="button" id="btn-view-vector" onclick="switchStageMode('vector')" class="px-3 py-1 rounded-full text-[11px] font-bold bg-primary text-white transition-all">
+                                🎨 Visual Simulasi
+                            </button>
+                            <button type="button" id="btn-view-photo" onclick="switchStageMode('photo')" class="px-3 py-1 rounded-full text-[11px] font-bold text-gray-600 hover:text-primary transition-all">
+                                📸 Foto Referensi
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Center Stage: Layered SVG Canvas & Photo Preview -->
+                    <div class="relative flex-grow flex items-center justify-center min-h-[340px] sm:min-h-[380px] my-2">
+                        <!-- Mode 1: Interactive Vector Bouquet Canvas -->
+                        <div id="stage-vector-container" class="w-full h-full flex items-center justify-center">
+                            <div id="svg-bouquet-canvas" class="w-full max-w-[350px] h-[350px] flex items-center justify-center drop-shadow-2xl transition-all duration-300">
+                                <!-- Populated dynamically by renderSimulator() -->
+                            </div>
+                        </div>
+
+                        <!-- Mode 2: Real Photo Reference Mode -->
+                        <div id="stage-photo-container" class="hidden w-full max-w-[350px] rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-white">
+                            <div class="relative h-64 overflow-hidden bg-bloom-light">
+                                <img id="stage-real-photo" src="https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=700&q=80" 
+                                     onerror="this.onerror=null; this.src=getFallbackDataUri('Foto Referensi Produk', '#d66874');"
+                                     alt="Referensi Produk Nyata" class="w-full h-full object-cover">
+                                <span id="photo-color-indicator" class="absolute top-3 right-3 bg-white/95 backdrop-blur px-3 py-1 rounded-full text-[11px] font-bold text-primary shadow flex items-center gap-1.5">
+                                    Pink
+                                </span>
+                            </div>
+                            <div class="p-4 text-left bg-white">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-bloom-rose block mb-1">Referensi Hasil Rangkaian</span>
+                                <p id="photo-spec-desc" class="text-xs text-gray-600 leading-relaxed"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Stage Summary & Order CTA -->
+                    <div class="bg-white/95 backdrop-blur-md p-5 rounded-3xl border border-gray-200 shadow-lg z-20 space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gray-100 pb-3">
+                            <div>
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 block">Rincian Komposisi Desain:</span>
+                                <p id="stage-materials-list" class="text-xs font-semibold text-gray-700 leading-snug mt-0.5">6 Tangkai Mawar Segar, Paper Flower Premium</p>
+                            </div>
+                            <span id="stage-stamp-earn" class="text-[10px] font-bold bg-bloom-light text-bloom-dark px-2.5 py-1 rounded-full border border-bloom-soft whitespace-nowrap">
+                                +1 Stamp Loyalty
+                            </span>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div>
+                                <span class="text-[10px] font-bold text-gray-400 uppercase block">Total Estimasi Harga</span>
+                                <span id="sim-total-price" class="text-2xl sm:text-3xl font-serif font-bold text-bloom-rose">Rp 15.000</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <button type="button" onclick="bookDIYFromSimulator()" class="flex-1 sm:flex-initial px-4 py-3 rounded-xl border border-gray-300 text-primary hover:border-bloom-rose hover:text-bloom-rose text-xs font-bold transition-all flex items-center justify-center gap-1.5">
+                                    <i class="ph-bold ph-calendar-plus"></i> Rangkai di Toko
+                                </button>
+                                <button type="button" onclick="orderSimulatorViaWA()" class="flex-1 sm:flex-initial px-5 py-3 rounded-xl bg-bloom-rose hover:bg-bloom-dark text-white text-xs font-bold transition-all shadow-md flex items-center justify-center gap-1.5">
+                                    <i class="ph-fill ph-whatsapp-logo text-base"></i> Pesan Desain Ini
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIGITAL STAMP LOYALTY & REFERRAL (Hal. 4 & 10) - REAL MEMBER SYSTEM -->
+    <section id="loyalty" class="py-24 bg-gradient-to-b from-bloom-light/60 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Explanation & Real Login / Voucher Input -->
+                <div class="lg:col-span-6">
+                    <span class="text-bloom-rose font-bold tracking-widest text-xs uppercase block mb-2">Real-Time Customer Retention Program</span>
+                    <h2 class="text-3xl lg:text-5xl font-serif font-bold text-primary mb-4">Digital Stamp Loyalty & Member</h2>
+                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed mb-6">
+                        Cukup masuk menggunakan <strong>Nomor WhatsApp</strong> Anda tanpa perlu password! Setiap transaksi kelipatan <strong>Rp 50.000</strong>, mintalah <strong>Kode Kasir / Voucher</strong> kepada Admin untuk menambah stempel secara nyata.
+                    </p>
+
+                    <!-- Box 1: Login / Cek Member dengan Nomor WA -->
+                    <div id="member-auth-box" class="bg-white p-5 sm:p-6 rounded-3xl border-2 border-bloom-pink/50 shadow-lg mb-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="font-serif font-bold text-lg text-primary flex items-center gap-2">
+                                <i class="ph-fill ph-user-circle-check text-bloom-rose text-2xl"></i>
+                                <span id="auth-box-title">Masuk / Daftar Kartu Member</span>
+                            </h4>
+                            <span id="member-status-pill" class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-gray-100 text-gray-600">Belum Login</span>
+                        </div>
+
+                        <!-- Form saat belum login -->
+                        <form id="member-login-form" onsubmit="handleMemberLogin(event)" class="space-y-3">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-[11px] font-bold text-gray-600 uppercase mb-1">Nama Lengkap</label>
+                                    <input type="text" id="member-name-input" required placeholder="Contoh: Rania Putri" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-bloom-rose">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-bold text-gray-600 uppercase mb-1">Nomor WhatsApp Aktif</label>
+                                    <input type="tel" id="member-wa-input" required placeholder="0812xxxxxxxx" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-bloom-rose">
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full bg-bloom-rose hover:bg-bloom-dark text-white py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2">
+                                <i class="ph-bold ph-sign-in text-base"></i> Buka Kartu Stempel Saya
+                            </button>
+                        </form>
+
+                        <!-- Panel saat sudah login: Input Kode Kasir & Klaim -->
+                        <div id="member-active-panel" class="hidden space-y-4">
+                            <div class="flex flex-wrap items-center justify-between gap-2 bg-bloom-light/60 p-3.5 rounded-2xl border border-bloom-soft">
+                                <div>
+                                    <p class="text-xs font-bold text-primary" id="logged-member-name">Rania Putri</p>
+                                    <p class="text-[11px] text-gray-500" id="logged-member-wa">WA: 08123456789 • ID: #BB-789</p>
+                                </div>
+                                <button type="button" onclick="handleMemberLogout()" class="text-[11px] font-bold text-red-500 hover:underline flex items-center gap-1">
+                                    <i class="ph-bold ph-sign-out"></i> Ganti Akun
+                                </button>
+                            </div>
+
+                            <!-- Input Kode Voucher / PIN Kasir dari Admin -->
+                            <div>
+                                <label class="block text-[11px] font-bold text-gray-700 uppercase mb-1.5">
+                                    🔐 Punya Kode Transaksi / PIN Kasir dari Admin?
+                                </label>
+                                <div class="flex gap-2">
+                                    <input type="text" id="cashier-code-input" placeholder="Ketik kode (Cth: BLOOM50)" class="flex-1 px-3.5 py-2.5 rounded-xl border border-gray-200 text-xs font-bold uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-bloom-rose">
+                                    <button type="button" onclick="redeemCashierCode()" class="bg-primary hover:bg-gray-800 text-white px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 shadow-sm">
+                                        <i class="ph-bold ph-check-circle text-bloom-pink"></i> Klaim Stamp
+                                    </button>
+                                </div>
+                                <p class="text-[10px] text-gray-400 mt-1.5">
+                                    *Untuk keperluan demo/presentasi dosen, gunakan kode kasir: <strong class="text-bloom-dark">BLOOM50</strong> (+1 Stamp) atau <strong class="text-bloom-dark">BLISS100</strong> (+2 Stamp).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                        <div class="bg-white p-4 rounded-2xl border border-bloom-soft shadow-sm flex items-center gap-3.5">
+                            <div class="w-11 h-11 rounded-2xl bg-bloom-light text-bloom-rose flex items-center justify-center text-lg font-bold shrink-0">
+                                5★
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-primary text-xs">Reward 1 (5 Stamp)</h4>
+                                <p class="text-[11px] text-gray-500">Gratis <strong>Small/Mini Bouquet</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-2xl border border-bliss-green/30 shadow-sm flex items-center gap-3.5">
+                            <div class="w-11 h-11 rounded-2xl bg-bliss-light text-bliss-dark flex items-center justify-center text-lg font-bold shrink-0">
+                                15★
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-primary text-xs">Reward 2 (15 Stamp)</h4>
+                                <p class="text-[11px] text-gray-500">Gratis <strong>Workshop Class DIY</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="copyReferral()" class="bg-white border border-gray-300 text-primary px-5 py-3 rounded-full text-xs font-bold hover:border-bloom-rose transition-all flex items-center gap-2 shadow-sm">
+                            <i class="ph-bold ph-copy"></i> Salin Kode Referral Member: <span id="member-referral-code" class="text-bloom-rose">BLOOMBLISS26</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Interactive Member Card -->
+                <div class="lg:col-span-6">
+                    <div class="bg-white p-7 sm:p-9 rounded-[36px] shadow-2xl border border-gray-100 relative overflow-hidden">
+                        <div class="absolute -top-12 -right-12 w-40 h-40 bg-bloom-light rounded-full -z-0"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="flex justify-between items-start border-b border-gray-100 pb-5 mb-6">
+                                <div>
+                                    <span class="text-[10px] font-bold uppercase tracking-widest text-bloom-rose">Bloom & Bliss Official Pass</span>
+                                    <h3 class="font-serif font-bold text-2xl text-primary mt-0.5" id="card-holder-name">Kartu Stempel Digital</h3>
+                                    <p class="text-xs text-gray-500 mt-1" id="card-holder-meta">Masuk dengan No. WA untuk menyimpan progres otomatis</p>
+                                </div>
+                                <div class="bg-gray-50 p-2.5 rounded-xl border border-gray-200 text-primary text-center">
+                                    <i class="ph ph-qr-code text-3xl"></i>
+                                    <span class="block text-[9px] font-bold text-gray-400" id="card-member-id">GUEST</span>
+                                </div>
+                            </div>
+
+                            <!-- 5 Stamps Grid -->
+                            <div class="grid grid-cols-5 gap-3 mb-6" id="stamp-container">
+                                <div class="aspect-square rounded-2xl border-2 border-dashed border-gray-300 flex items-center justify-center text-xl font-bold text-gray-300 stamp-circle bg-gray-50" data-index="1">1</div>
+                                <div class="aspect-square rounded-2xl border-2 border-dashed border-gray-300 flex items-center justify-center text-xl font-bold text-gray-300 stamp-circle bg-gray-50" data-index="2">2</div>
+                                <div class="aspect-square rounded-2xl border-2 border-dashed border-gray-300 flex items-center justify-center text-xl font-bold text-gray-300 stamp-circle bg-gray-50" data-index="3">3</div>
+                                <div class="aspect-square rounded-2xl border-2 border-dashed border-gray-300 flex items-center justify-center text-xl font-bold text-gray-300 stamp-circle bg-gray-50" data-index="4">4</div>
+                                <div class="aspect-square rounded-2xl border-2 border-bloom-pink bg-bloom-light flex items-center justify-center text-xl text-bloom-rose stamp-circle" data-index="5">
+                                    <i class="ph-fill ph-gift"></i>
+                                </div>
+                            </div>
+
+                            <div class="w-full bg-gray-100 rounded-full h-3 mb-3 overflow-hidden">
+                                <div class="bg-gradient-to-r from-bloom-pink to-bloom-rose h-3 rounded-full transition-all duration-500" style="width: 0%" id="stamp-progress"></div>
+                            </div>
+
+                            <div class="flex justify-between items-center text-xs mb-5">
+                                <p id="stamp-message" class="text-gray-600 font-medium">
+                                    Kumpulkan <span id="stamps-needed" class="font-bold text-bloom-rose">5</span> stamp lagi untuk klaim Free Small Bouquet!
+                                </p>
+                                <span id="stamp-counter-badge" class="font-bold text-primary">0 / 5 Stamp</span>
+                            </div>
+
+                            <!-- Claim Reward via WhatsApp Button (muncul saat 5 stamp penuh) -->
+                            <div id="claim-reward-box" class="hidden pt-4 border-t border-gray-100">
+                                <button type="button" onclick="claimRewardViaWA()" class="w-full bg-gradient-to-r from-bloom-rose to-bloom-dark text-white py-3.5 rounded-2xl text-xs font-bold uppercase tracking-wider shadow-lg hover:opacity-95 transition-all flex items-center justify-center gap-2">
+                                    <i class="ph-fill ph-gift text-lg"></i> Klaim Free Small Bouquet ke WhatsApp Admin
+                                </button>
+                            </div>
+
+                            <!-- Riwayat Transaksi Stamp Member -->
+                            <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-400">
+                                <span id="stamp-lifetime-info">Total Akumulasi Member: 0 Stamp</span>
+                                <span class="text-emerald-600 font-semibold flex items-center gap-1">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Tersimpan Otomatis
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR TEAM SECTION (Sesuai Hal. 2 & Hal. 7 Projek KWU 3) -->
+    <section id="team" class="py-24 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-bliss-dark font-bold tracking-widest text-xs uppercase block mb-2">Struktur Organisasi & Tanggung Jawab (Hal. 7)</span>
+                <h2 class="text-3xl lg:text-5xl font-serif font-bold text-primary mb-4">Tim Pengembang Bloom & Bliss</h2>
+                <p class="text-gray-600 text-sm">
+                    Kolaborasi 12 anggota tim profesional yang memastikan standar kualitas produk, kelancaran operasional, hingga pelayanan konsultasi pelanggan.
+                </p>
+            </div>
+
+            <!-- Core Coordinators (4 Utama) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-bloom-light/50 rounded-3xl p-6 border border-bloom-soft hover-card">
+                    <div class="flex items-center gap-3.5 mb-3">
+                        <div class="w-12 h-12 rounded-2xl bg-primary text-white font-serif font-bold text-xl flex items-center justify-center shrink-0">I</div>
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-bloom-rose text-white px-2.5 py-0.5 rounded-full">Ketua Tim</span>
+                            <h3 class="font-bold text-primary text-base mt-1">Indra Maha Putra</h3>
+                            <p class="text-[11px] text-gray-500">NIM: 25013010238</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-600 leading-relaxed">Bertanggung jawab penuh atas operasional keseluruhan, strategi bisnis, serta pengambil keputusan utama.</p>
+                </div>
+
+                <div class="bg-bloom-light/50 rounded-3xl p-6 border border-bloom-soft hover-card">
+                    <div class="flex items-center gap-3.5 mb-3">
+                        <div class="w-12 h-12 rounded-2xl bg-bloom-rose text-white font-serif font-bold text-xl flex items-center justify-center shrink-0">A</div>
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-white text-bloom-dark border border-bloom-pink px-2.5 py-0.5 rounded-full">Bendahara</span>
+                            <h3 class="font-bold text-primary text-base mt-1">Adelia Putri Nila S.</h3>
+                            <p class="text-[11px] text-gray-500">NIM: 25013010230</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-600 leading-relaxed">Mengelola keuangan, pencatatan transaksi, anggaran operasional, dan pembelian bahan baku (supplier).</p>
+                </div>
+
+                <div class="bg-bloom-light/50 rounded-3xl p-6 border border-bloom-soft hover-card">
+                    <div class="flex items-center gap-3.5 mb-3">
+                        <div class="w-12 h-12 rounded-2xl bg-bliss-dark text-white font-serif font-bold text-xl flex items-center justify-center shrink-0">C</div>
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-white text-bliss-dark border border-bliss-green px-2.5 py-0.5 rounded-full">Koord. Produksi</span>
+                            <h3 class="font-bold text-primary text-base mt-1">Chatarina Yolanda P. M</h3>
+                            <p class="text-[11px] text-gray-500">NIM: 25013010187</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-600 leading-relaxed">Menjaga kelancaran alur pembuatan buket/hampers, mengatur pembagian kerja produksi, dan memastikan standar kualitas.</p>
+                </div>
+
+                <div class="bg-bloom-light/50 rounded-3xl p-6 border border-bloom-soft hover-card">
+                    <div class="flex items-center gap-3.5 mb-3">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-600 text-white font-serif font-bold text-xl flex items-center justify-center shrink-0">N</div>
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-white text-amber-700 border border-amber-300 px-2.5 py-0.5 rounded-full">Koord. Pemasaran</span>
+                            <h3 class="font-bold text-primary text-base mt-1">Novi Salwa Anggraini</h3>
+                            <p class="text-[11px] text-gray-500">NIM: 25013010215</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-600 leading-relaxed">Merencanakan strategi promosi, menganalisis target pasar, dan mengatur jadwal kampanye pemasaran.</p>
+                </div>
+            </div>
+
+            <!-- Division Members (8 Anggota) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Divisi Produksi -->
+                <div class="bg-gray-50 rounded-3xl p-6 border border-gray-100">
+                    <h4 class="font-serif font-bold text-lg text-primary mb-2 flex items-center gap-2">
+                        <i class="ph-fill ph-scissors text-bloom-rose"></i> Tim Produksi & Florist Guide
+                    </h4>
+                    <p class="text-[11px] text-gray-500 mb-4">Merangkai bunga, merakit buket/hampers sesuai kustomisasi pelanggan, dan menyiapkan pengemasan (packaging).</p>
+                    <ul class="space-y-2.5 text-xs">
+                        <li class="bg-white p-3 rounded-xl border border-gray-100 flex justify-between items-center">
+                            <strong class="text-primary">Sagita Dwi Rahmadini</strong>
+                            <span class="text-gray-400">25013010182</span>
+                        </li>
+                        <li class="bg-white p-3 rounded-xl border border-gray-100 flex justify-between items-center">
+                            <strong class="text-primary">Felicia Sagira H. P</strong>
+                            <span class="text-gray-400">25013010189</span>
+                        </li>
+                        <li class="bg-white p-3 rounded-xl border border-gray-100 flex justify-between items-center">
+                            <strong class="text-primary">Marsha Rani Saffanah</strong>
+                            <span class="text-gray-400">25013010198</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Divisi Kreatif, Dokumentasi & CRM -->
+                <div class="bg-gray-50 rounded-3xl p-6 border border-gray-100">
+                    <h4 class="font-serif font-bold text-lg text-primary mb-2 flex items-center gap-2">
+                        <i class="ph-fill ph-camera text-bloom-rose"></i> Kreatif, Dokumentasi & CRM
+                    </h4>
+                    <p class="text-[11px] text-gray-500 mb-4">Visual promosi digital, katalog portofolio estetik, serta layanan konsultasi & pemesanan pelanggan.</p>
+                    <ul class="space-y-2.5 text-xs">
+                        <li class="bg-white p-3 rounded-xl border border-gray-100">
+                            <div class="flex justify-between"><strong class="text-primary">Anggi Islami Siregar</strong><span class="text-gray-400">25013010241</span></div>
+                            <span class="text-[11px] text-bloom-dark font-medium">Desain & Konten Kreator</span>
+                        </li>
+                        <li class="bg-white p-3 rounded-xl border border-gray-100">
+                            <div class="flex justify-between"><strong class="text-primary">Nayra Mentari Utama</strong><span class="text-gray-400">25013010253</span></div>
+                            <span class="text-[11px] text-bloom-dark font-medium">Fotografer & Dokumentasi</span>
+                        </li>
+                        <li class="bg-white p-3 rounded-xl border border-gray-100">
+                            <div class="flex justify-between"><strong class="text-primary">Dimas Setia Nugroho</strong><span class="text-gray-400">25013010232</span></div>
+                            <span class="text-[11px] text-green-600 font-semibold">Admin Consultation (CRM) • +62 889-8919-5951</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Divisi Logistik & Pengadaan -->
+                <div class="bg-gray-50 rounded-3xl p-6 border border-gray-100">
+                    <h4 class="font-serif font-bold text-lg text-primary mb-2 flex items-center gap-2">
+                        <i class="ph-fill ph-truck text-bloom-rose"></i> Logistik & Pengadaan
+                    </h4>
+                    <p class="text-[11px] text-gray-500 mb-4">Membeli kebutuhan bahan baku dari pemasok (supplier) serta mengurus proses pengiriman produk sampai ke pelanggan.</p>
+                    <ul class="space-y-2.5 text-xs">
+                        <li class="bg-white p-3 rounded-xl border border-gray-100">
+                            <div class="flex justify-between"><strong class="text-primary">Hafidh Kurniawan</strong><span class="text-gray-400">25013010225</span></div>
+                            <span class="text-[11px] text-bliss-dark font-medium">Logistik & Pengadaan Bahan Baku</span>
+                        </li>
+                        <li class="bg-white p-3 rounded-xl border border-gray-100">
+                            <div class="flex justify-between"><strong class="text-primary">Muhammad Fikri R. A</strong><span class="text-gray-400">25013010250</span></div>
+                            <span class="text-[11px] text-bliss-dark font-medium">Logistik & Pengiriman Pesanan</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- O2O RESERVATION & DIRECT WHATSAPP ORDER (Hal. 4 & 19) -->
+    <section id="booking" class="py-24 bg-primary text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#e5989b 2px, transparent 2px); background-size: 28px 28px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5">
+                    <span class="text-bloom-pink font-bold tracking-widest text-xs uppercase block mb-2">Integrasi Online-to-Offline (O2O)</span>
+                    <h2 class="text-3xl lg:text-5xl font-serif font-bold mb-5">Reservasi Area DIY & Konsultasi</h2>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-8">
+                        Cegah antrean di gerai fisik! Jadwalkan kedatangan Anda untuk merangkai buket secara langsung bersama <em>florist guide</em>, ambil pesanan custom, atau konsultasikan dekorasi pernikahan/acara Anda.
+                    </p>
+
+                    <div class="space-y-4">
+                        <a href="https://wa.me/6288989195951" target="_blank" class="flex items-center gap-4 p-4 rounded-2xl bg-white/10 hover:bg-white/15 transition-colors border border-white/10">
+                            <div class="w-12 h-12 rounded-xl bg-green-500 text-white flex items-center justify-center text-2xl shrink-0">
+                                <i class="ph-fill ph-whatsapp-logo"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-300">WhatsApp Resmi Admin Consultation (Dimas)</p>
+                                <p class="text-base font-bold text-white">+62 889-8919-5951</p>
+                            </div>
+                        </a>
+
+                        <a href="https://instagram.com/bloomnbliss_florist" target="_blank" class="flex items-center gap-4 p-4 rounded-2xl bg-white/10 hover:bg-white/15 transition-colors border border-white/10">
+                            <div class="w-12 h-12 rounded-xl bg-bloom-rose text-white flex items-center justify-center text-2xl shrink-0">
+                                <i class="ph-fill ph-instagram-logo"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-300">Instagram & TikTok Official</p>
+                                <p class="text-base font-bold text-white">@bloomnbliss_florist</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-white text-primary rounded-[36px] p-6 sm:p-10 shadow-2xl">
+                    <h3 class="font-serif font-bold text-2xl mb-2">Formulir Reservasi & Pemesanan O2O</h3>
+                    <p class="text-xs text-gray-500 mb-6">Data reservasi akan langsung diformat dan terhubung ke WhatsApp Admin CRM kami.</p>
+                    
+                    <form id="booking-form" onsubmit="submitBooking(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">Nama Pelanggan</label>
+                                <input type="text" id="book-name" required class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-bloom-rose" placeholder="Contoh: Rania Putri">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">Nomor WhatsApp</label>
+                                <input type="tel" id="book-wa" required class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-bloom-rose" placeholder="0812xxxxxxxx">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">Pilih Layanan O2O</label>
+                                <select id="book-service" class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-bloom-rose">
+                                    <option value="Reservasi Area Merangkai DIY (Hands-on Experience)">Reservasi Area Merangkai DIY (Mandiri)</option>
+                                    <option value="Pickup / Ambil Pesanan Custom Buket & Hampers">Pickup Pesanan Custom Buket / Hampers</option>
+                                    <option value="Pendaftaran Special Arrangement Class / Workshop">Special Arrangement Class / Workshop Mini</option>
+                                    <option value="Konsultasi Dekorasi Event Organizer / Pernikahan (Rp2.5jt)">Konsultasi Dekorasi Pernikahan / Event</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">Produk / Paket Pilihan</label>
+                                <input type="text" id="book-product" class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-bloom-rose" placeholder="Contoh: Buket Bunga Asli Medium">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">Tanggal Kunjungan / Pengiriman</label>
+                                <input type="date" id="book-date" required class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-bloom-rose">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">Jam Sesi Kedatangan</label>
+                                <input type="time" id="book-time" required value="10:00" class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-bloom-rose">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full bg-bloom-rose hover:bg-bloom-dark text-white font-bold py-4 rounded-2xl transition-all text-sm shadow-lg flex items-center justify-center gap-2 mt-2">
+                            <i class="ph-bold ph-whatsapp-logo text-xl"></i> Kirim Reservasi ke WhatsApp Admin (+62 889-8919-5951)
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (Sesuai Hal. 19) -->
+    <footer class="bg-gray-950 text-gray-400 py-14 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-10 border-b border-gray-800">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 text-white mb-4">
+                        <div class="w-9 h-9 rounded-xl bg-bloom-rose flex items-center justify-center">
+                            <i class="ph-fill ph-flower-lotus text-xl"></i>
+                        </div>
+                        <span class="font-serif font-bold text-2xl">Bloom & Bliss Florist Store</span>
+                    </div>
+                    <p class="text-xs leading-relaxed max-w-md mb-5">
+                        <em>"Bloomed with Love, Wrapped in Bliss"</em> — Penyedia floristry modern & One-Stop Celebration Provider yang mengusung konsep interaktif DIY Florist, Custom Bouquet, Hampers Hari Raya, dan Dekorasi Pernikahan.
+                    </p>
+                    <div class="flex flex-wrap gap-3 text-xs">
+                        <a href="https://bloomnbliss.netlify.app" target="_blank" class="bg-gray-900 hover:bg-gray-800 text-gray-200 px-3.5 py-2 rounded-xl border border-gray-800 flex items-center gap-1.5">
+                            <i class="ph-bold ph-globe text-bloom-pink"></i> bloomnbliss.netlify.app
+                        </a>
+                        <a href="https://wa.me/6288989195951" target="_blank" class="bg-gray-900 hover:bg-gray-800 text-gray-200 px-3.5 py-2 rounded-xl border border-gray-800 flex items-center gap-1.5">
+                            <i class="ph-fill ph-whatsapp-logo text-green-400"></i> +62 889-8919-5951 (Dimas)
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-serif font-bold text-base mb-4">Lini Produk & Harga</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#products" class="hover:text-bloom-pink">Buket Bunga Asli (Rp35rb – Rp60rb)</a></li>
+                        <li><a href="#products" class="hover:text-bloom-pink">Buket Bunga Palsu (Rp30rb – Rp50rb)</a></li>
+                        <li><a href="#products" class="hover:text-bloom-pink">Buket Uang 10-20 Slot (Rp32rb – Rp43rb)</a></li>
+                        <li><a href="#products" class="hover:text-bloom-pink">Buket Boneka Wisuda (Rp60rb – Rp150rb)</a></li>
+                        <li><a href="#products" class="hover:text-bloom-pink">Hampers & Parcel (Rp50rb – Rp500rb)</a></li>
+                        <li><a href="#products" class="hover:text-bloom-pink">Dekorasi Wedding EO (Rp2.500.000)</a></li>
+                    </ul>
+            <div class="pt-6 pb-16 lg:pb-0 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500">
+                <p>&copy; 2026 Bloom & Bliss Florist Store — Projek Kewirausahaan (KWU).</p>
+                <p class="mt-2 sm:mt-0">Siap diakses di Perangkat Mobile & Desktop (Light & Dark Mode)</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- STICKY MOBILE BOTTOM NAVIGATION BAR (Khusus HP agar nyaman dipakai customer) -->
+    <div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 px-3 py-2 flex justify-around items-center shadow-2xl">
+        <a href="#products" class="flex flex-col items-center gap-0.5 text-[11px] font-bold text-gray-600 hover:text-bloom-rose py-1 px-2">
+            <i class="ph-fill ph-shopping-bag text-lg text-bloom-rose"></i>
+            <span>Katalog</span>
+        </a>
+        <a href="#diy" class="flex flex-col items-center gap-0.5 text-[11px] font-bold text-bloom-dark bg-bloom-light px-3.5 py-1.5 rounded-2xl">
+            <i class="ph-fill ph-magic-wand text-lg text-bloom-rose"></i>
+            <span>Simulasi DIY</span>
+        </a>
+        <a href="#loyalty" class="flex flex-col items-center gap-0.5 text-[11px] font-bold text-gray-600 hover:text-bloom-rose py-1 px-2">
+            <i class="ph-fill ph-star text-lg text-amber-500"></i>
+            <span>Stamp</span>
+        </a>
+        <a href="https://wa.me/6288989195951" target="_blank" class="flex flex-col items-center gap-0.5 text-[11px] font-bold text-green-600 py-1 px-2">
+            <i class="ph-fill ph-whatsapp-logo text-lg"></i>
+            <span>Chat WA</span>
+        </a>
+    </div>
+
+    <!-- CUSTOM MODAL -->
+    <div id="modal-overlay" class="fixed inset-0 bg-gray-900/60 z-[100] items-center justify-center p-4">
+        <div class="bg-white rounded-[32px] p-7 max-w-md w-full text-center shadow-2xl border border-gray-100" id="modal-content">
+            <div class="w-16 h-16 bg-bloom-light text-bloom-rose rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl">
+                <i class="ph-fill ph-check-circle"></i>
+            </div>
+            <h3 class="text-2xl font-bold font-serif mb-2 text-primary" id="modal-title">Informasi</h3>
+            <p class="text-gray-600 mb-6 text-xs sm:text-sm leading-relaxed" id="modal-message"></p>
+            <div class="flex gap-3 justify-center">
+                <button onclick="closeModal()" class="flex-1 bg-gray-100 text-gray-700 py-3 rounded-xl text-xs font-bold hover:bg-gray-200 transition-all">
+                    Tutup
+                </button>
+                <a id="modal-wa-link" href="https://wa.me/6288989195951" target="_blank" class="hidden flex-1 bg-green-600 text-white py-3 rounded-xl text-xs font-bold hover:bg-green-700 transition-all items-center justify-center gap-1.5">
+                    <i class="ph-fill ph-whatsapp-logo text-base"></i> Lanjut ke WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const formatRp = (num) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(num);
+        const ADMIN_WA = "6288989195951";
+
+        // =========================================================================
+        // 0. DARK / LIGHT MODE TOGGLE & ILLUSTRATED FALLBACK ARTWORK GENERATOR
+        // =========================================================================
+        function toggleTheme() {
+            const htmlEl = document.documentElement;
+            const isDark = htmlEl.classList.toggle('dark');
+            localStorage.setItem('bloom_theme', isDark ? 'dark' : 'light');
+            updateThemeIcons(isDark);
+        }
+
+        function updateThemeIcons(isDark) {
+            const iconDesk = document.getElementById('theme-icon-desktop');
+            const iconMob = document.getElementById('theme-icon-mobile');
+            const cls = isDark ? 'ph-fill ph-sun text-amber-400 text-lg' : 'ph-fill ph-moon text-lg';
+            if (iconDesk) iconDesk.className = cls;
+            if (iconMob) iconMob.className = isDark ? 'ph-fill ph-sun text-amber-400 text-xl' : 'ph-fill ph-moon text-xl';
+        }
+
+        // Generates a rich, zero-dependency SVG floral illustration if any external photo fails to load
+        function getFallbackDataUri(title, accentHex = '#d66874') {
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" width="600" height="420">
+                <defs>
+                    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#fdf4f5"/>
+                        <stop offset="100%" stop-color="#f4acb7"/>
+                    </linearGradient>
+                </defs>
+                <rect width="600" height="420" fill="url(#bg)"/>
+                <circle cx="300" cy="190" r="130" fill="#ffffff" fill-opacity="0.75"/>
+                <!-- Paper Flower Cone -->
+                <polygon points="300,320 205,155 395,155" fill="${accentHex}" opacity="0.88"/>
+                <polygon points="300,335 235,175 365,175" fill="#ffffff" opacity="0.7"/>
+                <!-- Roses & Gerbera -->
+                <circle cx="265" cy="160" r="28" fill="#e63946"/>
+                <circle cx="335" cy="160" r="28" fill="#ff758f"/>
+                <circle cx="300" cy="135" r="32" fill="#d90429"/>
+                <circle cx="265" cy="160" r="14" fill="#ffccd5"/>
+                <circle cx="335" cy="160" r="14" fill="#ffb3c1"/>
+                <circle cx="300" cy="135" r="16" fill="#ffccd5"/>
+                <!-- Ribbon -->
+                <rect x="272" y="275" width="56" height="12" rx="6" fill="#9d4edd"/>
+                <text x="300" y="382" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#2b2d42" text-anchor="middle">${title}</text>
+            </svg>`;
+            return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+        }
+
+        // Generates custom live SVG thumbnail for each product card so it ALWAYS looks realistic & never breaks
+        function getCatalogCardIllustration(itemId, sizeKey) {
+            if (itemId === 'craftday') {
+                const isSingle = sizeKey === '1 Tangkai (Only 5K)';
+                const isTriple = sizeKey.includes('Bebas Mix');
+                return `
+                    <svg viewBox="0 0 400 260" class="w-full h-full bg-gradient-to-br from-[#fdf4f5] via-[#fff0f3] to-[#f9e5e8]">
+                        <circle cx="200" cy="130" r="105" fill="#ffffff" fill-opacity="0.7"/>
+                        ${!isSingle ? `
+                            <polygon points="200,235 120,90 165,60 200,95" fill="#f4acb7"/>
+                            <polygon points="200,235 280,90 235,60 200,95" fill="#d88c9a"/>
+                            <polygon points="150,150 250,150 225,245 175,245" fill="#f4acb7"/>
+                        ` : `
+                            <polygon points="155,65 245,65 212,240 188,240" fill="#ffffff" fill-opacity="0.6" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,2"/>
+                        `}
+                        <line x1="200" y1="100" x2="200" y2="235" stroke="#3a5a40" stroke-width="4.5"/>
+                        ${isTriple ? `
+                            ${drawGerberaSVG(162, 110, 1.05, '#ff758f', '#fb8500')}
+                            ${drawPeacockAsterSVG(238, 112, 0.95)}
+                            ${drawRoseSVG(200, 88, 1.15, '#d90429', '#8d0801')}
+                        ` : `
+                            ${drawGerberaSVG(175, 102, 1.2, '#ff758f', '#fb8500')}
+                            ${drawRoseSVG(222, 96, 1.2, '#d90429', '#8d0801')}
+                        `}
+                        <!-- Pink/Purple Ribbon -->
+                        <rect x="176" y="192" width="48" height="10" rx="5" fill="#9d4edd"/>
+                        <circle cx="200" cy="197" r="5" fill="#ffffff" stroke="#9d4edd" stroke-width="2"/>
+                    </svg>
+                `;
+            }
+            return null;
+        }
+
+        // =========================================================================
+        // 1. DATA KATALOG PRODUK & HARGA JUAL RESMI (TERMASUK CRAFTDAY BEBAS TANGKAI)
+        // =========================================================================
+        const officialCatalog = [
+            {
+                id: 'craftday',
+                filter: 'craftday',
+                title: 'Bloom n Bliss Craftday (Bebas Pilih Tangkai)',
+                badge: 'Promo Craftday Only 5K!',
+                badgeColor: 'bg-amber-800 text-white',
+                desc: 'Craft Your Own Bloom! Bebas pilih dan kombinasi jumlah tangkai bunga segar favoritmu (Gerbera, Rose, Peacock Aster, atau Krisan) tanpa batas tangkai hanya Rp 5.000/tangkai + opsi Paper Flower (+Rp 10.000).',
+                sizes: {
+                    '1 Tangkai (Only 5K)': {
+                        price: 5000,
+                        flowerCount: 1, hasWrapping: false,
+                        spec: '1 Tangkai Bunga Segar Pilihan (Gerbera / Rose / Peacock Aster / Krisan) + Plastik Sleeve Bening & Pita Manis',
+                        photo: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=700&q=80'
+                    },
+                    '1 Tangkai + Wrapping': {
+                        price: 15000,
+                        flowerCount: 1, hasWrapping: true,
+                        spec: '1 Tangkai Bunga Segar Pilihan (5K) + Full Paper Flower Estetik & Pita Satin (+10K) + Kartu Ucapan',
+                        photo: 'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=700&q=80'
+                    },
+                    'Bebas Mix Tangkai (Custom)': {
+                        price: 25000,
+                        flowerCount: 3, hasWrapping: true,
+                        spec: 'Bebas Tentukan Jumlah Tangkai Tanpa Batas (Rp 5.000/tangkai) — Kombinasi Gerbera, Rose, Peacock Aster & Krisan + Opsi Paper Flower (+10K)',
+                        photo: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=700&q=80'
+                    }
+                }
+            },
+            {
+                id: 'fresh',
+                filter: 'bouquet',
+                title: 'Bouquet Bunga Asli (Fresh Flower)',
+                badge: 'Best Seller',
+                badgeColor: 'bg-bloom-rose text-white',
+                desc: 'Rangkaian mawar segar pilihan yang mekar sempurna, dibalut Paper Flower premium, pita satin, dan kartu ucapan.',
+                sizes: {
+                    Small: {
+                        price: 35000,
+                        flowerCount: 3, wrapSheets: 2,
+                        spec: '3 Tangkai Mawar Segar, Paper Flower Premium, Pita Satin & Kartu Ucapan Gratis',
+                        photo: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=700&q=80'
+                    },
+                    Medium: {
+                        price: 45000,
+                        flowerCount: 6, wrapSheets: 2,
+                        spec: '6 Tangkai Mawar Segar, Paper Flower Premium, Pita Satin & Kartu Ucapan Gratis',
+                        photo: 'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=700&q=80'
+                    },
+                    Large: {
+                        price: 60000,
+                        flowerCount: 10, wrapSheets: 2,
+                        spec: '10 Tangkai Mawar Segar, Paper Flower Premium, Pita Satin & Kartu Ucapan Gratis',
+                        photo: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=700&q=80'
+                    }
+                }
+            },
+            {
+                id: 'artificial',
+                filter: 'bouquet',
+                title: 'Bouquet Bunga Artificial',
+                badge: 'Tahan Lama',
+                badgeColor: 'bg-bliss-dark text-white',
+                desc: 'Buket bunga artificial kualitas tinggi yang awet menjadi kenang-kenangan abadi untuk wisuda maupun pajangan ruangan.',
+                sizes: {
+                    Small: {
+                        price: 30000,
+                        flowerCount: 3, wrapSheets: 3,
+                        spec: '3 Bunga Artificial Premium, 3 Layer Paper Flower, Pita Satin & Kartu Ucapan Gratis',
+                        photo: 'https://images.unsplash.com/photo-1591886960571-74d43a9d4166?auto=format&fit=crop&w=700&q=80'
+                    },
+                    Medium: {
+                        price: 40000,
+                        flowerCount: 6, wrapSheets: 5,
+                        spec: '6 Bunga Artificial Premium, 5 Layer Paper Flower, Pita Satin & Kartu Ucapan Gratis',
+                        photo: 'https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?auto=format&fit=crop&w=700&q=80'
+                    },
+                    Large: {
+                        price: 50000,
+                        flowerCount: 10, wrapSheets: 7,
+                        spec: '10 Bunga Artificial Premium, 7 Layer Paper Flower, Pita Satin & Kartu Ucapan Gratis',
+                        photo: 'https://images.unsplash.com/photo-1508615039623-a25605d2b022?auto=format&fit=crop&w=700&q=80'
+                    }
+                }
+            },
+            {
+                id: 'money',
+                filter: 'money',
+                title: 'Bouquet Uang (Money Bouquet)',
+                badge: 'Favorit Wisuda & Ultah',
+                badgeColor: 'bg-emerald-600 text-white',
+                desc: 'Jasa rangkai kerangka buket uang menggunakan pelindung plastik OPP bening rapi & aman tanpa merusak uang kertas.',
+                sizes: {
+                    Small: {
+                        price: 32000,
+                        slotCount: 10, wrapSheets: 2,
+                        spec: '10 Slot Lembar Uang (Plastik OPP Aman), Paper Flower, Pita Satin & Kartu Ucapan',
+                        photo: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=700&q=80'
+                    },
+                    Medium: {
+                        price: 38000,
+                        slotCount: 15, wrapSheets: 3,
+                        spec: '15 Slot Lembar Uang (Plastik OPP Aman), 3 Layer Paper Flower, Pita Satin & Kartu Ucapan',
+                        photo: 'https://images.unsplash.com/photo-1579621970795-87facc2f976d?auto=format&fit=crop&w=700&q=80'
+                    },
+                    Large: {
+                        price: 43000,
+                        slotCount: 20, wrapSheets: 4,
+                        spec: '20 Slot Lembar Uang (Plastik OPP Aman), 4 Layer Paper Flower, Pita Satin & Kartu Ucapan',
+                        photo: 'https://images.unsplash.com/photo-1518458028785-8fbcd101ebb9?auto=format&fit=crop&w=700&q=80'
+                    }
+                }
+            },
+            {
+                id: 'doll',
+                filter: 'bouquet',
+                title: 'Bouquet Boneka Wisuda',
+                badge: 'Spesial Kelulusan',
+                badgeColor: 'bg-indigo-600 text-white',
+                desc: 'Kombinasi boneka wisuda menggemaskan (12–15 cm) dengan mawar artificial, daun filler, topper kelulusan, dan Paper Flower bicolor.',
+                sizes: {
+                    Small: {
+                        price: 60000,
+                        dollCount: 1, flowerCount: 3, wrapSheets: 3,
+                        spec: '1 Boneka Wisuda, 3 Mawar Artificial, Daun Filler, Paper Flower & Kartu Ucapan',
+                        photo: 'https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=700&q=80'
+                    },
+                    Medium: {
+                        price: 70000,
+                        dollCount: 3, flowerCount: 0, wrapSheets: 2,
+                        spec: '3 Boneka Wisuda Eksklusif, Paper Flower Premium, Pita Satin & Kartu Ucapan',
+                        photo: 'https://images.unsplash.com/photo-1530325553241-4f6e7690cf36?auto=format&fit=crop&w=700&q=80'
+                    },
+                    Large: {
+                        price: 150000,
+                        dollCount: 5, flowerCount: 5, wrapSheets: 6,
+                        spec: '5 Boneka Wisuda, 5 Mawar Artificial, Topper Graduation, 6 Layer Paper Flower Bicolor & Kartu',
+                        photo: 'https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&w=700&q=80'
+                    }
+                }
+            },
+            {
+                id: 'hampers',
+                filter: 'hampers',
+                title: 'Bouquet Hampers & Gift Sets',
+                badge: 'Exclusive Parcel',
+                badgeColor: 'bg-amber-600 text-white',
+                desc: 'Bingkisan keranjang rotan / box kayu perpaduan rangkaian bunga mawar segar, baby\'s breath, eucalyptus, cokelat, sirup, dan lilin.',
+                sizes: {
+                    Mini: {
+                        price: 50000,
+                        flowerCount: 1, giftCount: 1,
+                        spec: 'Mini Basket, 1 Mawar Segar, Baby\'s Breath, 1 Cokelat Mini/Snack, Pita Satin & Greeting Tag',
+                        photo: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=700&q=80'
+                    },
+                    Small: {
+                        price: 142000,
+                        flowerCount: 3, giftCount: 1,
+                        spec: 'Keranjang Rotan S, 3 Mawar Segar, Baby\'s Breath, 1 Cokelat/Snack Premium, Pita Satin & Hangtag',
+                        photo: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=700&q=80'
+                    },
+                    Medium: {
+                        price: 297500,
+                        flowerCount: 6, giftCount: 2,
+                        spec: 'Box Kayu/Rotan M, 6 Mawar Segar, Baby\'s Breath, 2 Item Gift (Sirup/Lilin Aroma), Pita Satin & Kartu',
+                        photo: 'https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=700&q=80'
+                    },
+                    Large: {
+                        price: 500000,
+                        flowerCount: 10, giftCount: 3,
+                        spec: 'Keranjang Premium L, 10 Mawar Segar, Eucalyptus, 3 Item Premium Gift, Pita Satin & Kartu Eksklusif',
+                        photo: 'https://images.unsplash.com/photo-1607344645866-009c320b63e0?auto=format&fit=crop&w=700&q=80'
+                    }
+                }
+            },
+            {
+                id: 'eo',
+                filter: 'event',
+                title: 'Dekorasi Event & Pernikahan',
+                badge: 'Wedding & Engagement',
+                badgeColor: 'bg-primary text-white',
+                desc: 'Paket dekorasi backdrop & rangkaian bunga segar langsung di lokasi acara untuk pernikahan, lamaran, wisuda, maupun pesta.',
+                sizes: {
+                    'Full Set Event': {
+                        price: 2500000,
+                        flowerCount: 10,
+                        spec: 'Rangkaian Bunga Segar Mix (Mawar, Aster, Pikok) & Daun, Kain Backdrop Tulle/Ceruty & Rangka, Termasuk Tim Pemasangan di Lokasi',
+                        photo: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=80'
+                    }
+                }
+            }
+        ];
+
+        // Track selected size on each catalog card
+        const cardSelectedSizes = {
+            craftday: '1 Tangkai + Wrapping',
+            fresh: 'Medium',
+            artificial: 'Medium',
+            money: 'Medium',
+            doll: 'Small',
+            hampers: 'Mini',
+            eo: 'Full Set Event'
+        };
+
+        function renderCatalogGrid(filter = 'all') {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            const items = filter === 'all' ? officialCatalog : officialCatalog.filter(i => i.filter === filter);
+
+            items.forEach(item => {
+                const activeSizeKey = cardSelectedSizes[item.id];
+                const sizeData = item.sizes[activeSizeKey];
+                const sizeKeys = Object.keys(item.sizes);
+
+                const sizeButtonsHTML = sizeKeys.map(sKey => {
+                    const isActive = sKey === activeSizeKey;
+                    return `<button type="button" onclick="changeCardSize('${item.id}', '${sKey}')" 
+                            class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${isActive ? 'bg-primary text-white shadow-sm' : 'bg-gray-100 text-gray-600 hover:bg-bloom-light'}">
+                            ${sKey}
+                        </button>`;
+                }).join('');
+
+                const customSvgBanner = getCatalogCardIllustration(item.id, activeSizeKey);
+                const mediaBannerHTML = customSvgBanner ? `
+                    <div class="w-full h-full flex items-center justify-center transition-transform duration-700 hover:scale-105">
+                        ${customSvgBanner}
+                    </div>
+                ` : `
+                    <img src="${sizeData.photo}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                         onerror="this.onerror=null; this.src=getFallbackDataUri('${item.title.replace(/'/g, '')}', '#d66874');">
+                `;
+
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-[32px] overflow-hidden shadow-sm hover-card border border-gray-100 flex flex-col h-full";
+                card.innerHTML = `
+                    <div class="h-60 overflow-hidden relative bg-bloom-light/40">
+                        ${mediaBannerHTML}
+                        <span class="absolute top-4 left-4 ${item.badgeColor} px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider rounded-full shadow-md">
+                            ${item.badge}
+                        </span>
+                        <span class="absolute bottom-3 right-3 bg-white/95 backdrop-blur px-3 py-1 rounded-full text-[11px] font-bold text-bloom-dark shadow flex items-center gap-1">
+                            <i class="ph-fill ph-sparkle"></i> Bisa Custom Warna
+                        </span>
+                    </div>
+                    <div class="p-6 sm:p-7 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold font-serif text-primary mb-2">${item.title}</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed mb-4">${item.desc}</p>
+                        
+                        <!-- Pilihan Ukuran -->
+                        <div class="mb-4">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 block mb-1.5">Pilih Ukuran:</span>
+                            <div class="flex flex-wrap gap-1.5">${sizeButtonsHTML}</div>
+                        </div>
+
+                        <!-- Spesifikasi Isi Paket -->
+                        <div class="bg-bloom-light/50 p-3.5 rounded-2xl border border-bloom-soft mb-5 flex-grow">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-bloom-dark block mb-1">Detail Isi Ukuran ${activeSizeKey}:</span>
+                            <p class="text-xs text-gray-700 font-medium leading-relaxed">${sizeData.spec}</p>
+                        </div>
+
+                        <!-- Harga & Tombol Aksi -->
+                        <div class="pt-4 border-t border-gray-100 flex items-center justify-between gap-3">
+                            <div>
+                                <span class="text-[10px] text-gray-400 font-bold uppercase block">Harga Resmi</span>
+                                <span class="text-2xl font-serif font-bold text-primary">${formatRp(sizeData.price)}</span>
+                            </div>
+                            <div class="flex gap-2">
+                                ${item.id !== 'eo' ? `
+                                <button type="button" onclick="loadIntoSimulator('${item.id}', '${activeSizeKey}')" class="px-3.5 py-2.5 rounded-xl bg-bloom-light text-bloom-dark hover:bg-bloom-rose hover:text-white text-xs font-bold transition-colors flex items-center gap-1" title="Simulasikan Produk Ini">
+                                    <i class="ph-bold ph-magic-wand"></i> Custom
+                                </button>` : ''}
+                                <button type="button" onclick="directOrderWA('${item.title}', '${activeSizeKey}', ${sizeData.price}, '${sizeData.spec.replace(/'/g, "\\'")}')" class="px-4 py-2.5 rounded-xl bg-primary text-white hover:bg-gray-800 text-xs font-bold transition-colors flex items-center gap-1.5">
+                                    <i class="ph-fill ph-whatsapp-logo text-sm text-green-400"></i> Pesan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function changeCardSize(itemId, newSize) {
+            cardSelectedSizes[itemId] = newSize;
+            const activeFilterBtn = document.querySelector('#catalog-filters .cat-btn.active');
+            const currentFilter = activeFilterBtn ? activeFilterBtn.getAttribute('onclick').match(/'([^']+)'/)[1] : 'all';
+            renderCatalogGrid(currentFilter);
+        }
+
+        function filterCatalog(filter) {
+            document.querySelectorAll('#catalog-filters .cat-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-primary', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-600');
+            });
+            event.currentTarget.classList.add('active', 'bg-primary', 'text-white');
+            event.currentTarget.classList.remove('bg-white', 'text-gray-600');
+            renderCatalogGrid(filter);
+        }
+
+        // =========================================================================
+        // 2. REALISTIC INTERACTIVE DIY SIMULATOR LOGIC
+        // =========================================================================
+        let simState = {
+            category: 'craftday',
+            size: '1 Tangkai + Wrapping',
+            wrapPrimary: '#f4acb7',
+            wrapSecondary: '#d88c9a',
+            wrapName: 'Pink',
+            subvariant: 'gerbera',
+            stageMode: 'vector',
+            craftdayStems: {
+                gerbera: 1,
+                rose: 0,
+                aster: 0,
+                krisan: 0
+            },
+            craftdayWrap: true
+        };
+
+        const subvariantOptions = {
+            fresh: [
+                { val: 'merah', label: '🌹 Mawar Merah Klasik (Red Romance)', color1: '#e63946', color2: '#9b2226' },
+                { val: 'pink', label: '🌷 Mawar Pink Pastel (Sweet Blush)', color1: '#ff8fa3', color2: '#c9184a' },
+                { val: 'putih', label: '🤍 Mawar Putih & Baby\'s Breath', color1: '#f8f9fa', color2: '#ced4da' }
+            ],
+            artificial: [
+                { val: 'pastel', label: '🌸 Peony & Rose Artificial Pink Pastel', color1: '#ffcad4', color2: '#f4978e' },
+                { val: 'sunflower', label: '🌻 Artificial Sunflower & Daisy', color1: '#ffb703', color2: '#fb8500' },
+                { val: 'lilac', label: '💜 Artificial Lilac & Hydrangea', color1: '#cdb4db', color2: '#9d4edd' }
+            ],
+            money: [
+                { val: '100k', label: '💵 Simulasi Pecahan Rp 100.000 (Merah)', color1: '#e56b6f', color2: '#b56576' },
+                { val: '50k', label: '💶 Simulasi Pecahan Rp 50.000 (Biru)', color1: '#4ea8de', color2: '#1d3557' },
+                { val: 'kosong', label: '✨ Plastik OPP Transparan (Isi Uang Sendiri)', color1: '#e2e8f0', color2: '#94a3b8' }
+            ],
+            doll: [
+                { val: 'cream', label: '🧸 Boneka Beruang Wisuda Cream + Mawar Merah', color1: '#e6ccb2', color2: '#e63946' },
+                { val: 'brown', label: '🐻 Boneka Beruang Wisuda Cokelat + Mawar Pink', color1: '#b08968', color2: '#ff8fa3' }
+            ],
+            hampers: [
+                { val: 'rotan', label: '🧺 Keranjang Rotan Klasik + Mawar Segar & Gift', color1: '#d4a373', color2: '#e63946' },
+                { val: 'box', label: '🎁 Hardbox Kayu Eksklusif + Mawar & Aromaterapi', color1: '#bc6c25', color2: '#ff8fa3' }
+            ]
+        };
+
+        function getTotalCraftdayStems() {
+            const s = simState.craftdayStems;
+            return (s.gerbera || 0) + (s.rose || 0) + (s.aster || 0) + (s.krisan || 0);
+        }
+
+        function adjustCraftdayStem(type, delta) {
+            const current = simState.craftdayStems[type] || 0;
+            const nextVal = Math.max(0, current + delta);
+            simState.craftdayStems[type] = nextVal;
+
+            // Ensure at least 1 stem total remains selected
+            if (getTotalCraftdayStems() === 0) {
+                simState.craftdayStems[type] = 1;
+            }
+            document.getElementById(`stem-input-${type}`).value = simState.craftdayStems[type];
+            renderSimulator();
+        }
+
+        function setCraftdayStem(type, rawVal) {
+            let val = parseInt(rawVal, 10);
+            if (isNaN(val) || val < 0) val = 0;
+            simState.craftdayStems[type] = val;
+
+            if (getTotalCraftdayStems() === 0) {
+                simState.craftdayStems[type] = 1;
+                document.getElementById(`stem-input-${type}`).value = 1;
+            }
+            renderSimulator();
+        }
+
+        function setCraftdayWrapping(useWrap) {
+            simState.craftdayWrap = useWrap;
+            const btnNoWrap = document.getElementById('btn-craft-nowrap');
+            const btnWrap = document.getElementById('btn-craft-wrap');
+
+            if (useWrap) {
+                btnWrap.className = "p-3 rounded-xl border-2 border-primary bg-primary text-white text-left transition-all flex items-center justify-between shadow-sm";
+                btnNoWrap.className = "p-3 rounded-xl border-2 border-gray-200 bg-white text-left transition-all flex items-center justify-between";
+            } else {
+                btnNoWrap.className = "p-3 rounded-xl border-2 border-primary bg-primary text-white text-left transition-all flex items-center justify-between shadow-sm";
+                btnWrap.className = "p-3 rounded-xl border-2 border-gray-200 bg-white text-left transition-all flex items-center justify-between";
+            }
+            renderSimulator();
+        }
+
+        function selectSimCategory(catId) {
+            simState.category = catId;
+            const catObj = officialCatalog.find(c => c.id === catId);
+            const sizeKeys = Object.keys(catObj.sizes);
+            if (!sizeKeys.includes(simState.size)) {
+                simState.size = sizeKeys[0];
+            }
+
+            // Highlight category button
+            document.querySelectorAll('.sim-cat-btn').forEach(btn => {
+                if (btn.dataset.cat === catId) {
+                    btn.className = "sim-cat-btn active p-3 rounded-2xl border-2 border-bloom-rose bg-bloom-light/70 text-left transition-all";
+                } else {
+                    btn.className = "sim-cat-btn p-3 rounded-2xl border-2 border-gray-200 bg-white hover:border-bloom-pink text-left transition-all";
+                }
+            });
+
+            const sizeGrid = document.getElementById('sim-size-options');
+            const craftdayBuilder = document.getElementById('craftday-unlimited-builder');
+            const subvariantCont = document.getElementById('subvariant-container');
+            const step2Title = document.getElementById('step2-title');
+
+            if (catId === 'craftday') {
+                sizeGrid.classList.add('hidden');
+                craftdayBuilder.classList.remove('hidden');
+                subvariantCont.classList.add('hidden');
+                step2Title.innerText = "Atur Jumlah Tangkai Bunga & Opsi Wrapping (Tanpa Batas)";
+            } else {
+                sizeGrid.classList.remove('hidden');
+                craftdayBuilder.classList.add('hidden');
+                subvariantCont.classList.remove('hidden');
+                step2Title.innerText = "Pilih Ukuran & Komposisi Standar";
+                populateSimSizes();
+                populateSubvariants();
+            }
+
+            renderSimulator();
+        }
+
+        function populateSimSizes() {
+            const catObj = officialCatalog.find(c => c.id === simState.category);
+            const container = document.getElementById('sim-size-options');
+            container.innerHTML = '';
+
+            Object.keys(catObj.sizes).forEach(sKey => {
+                const sData = catObj.sizes[sKey];
+                const isSelected = sKey === simState.size;
+                let highlightItem = '';
+                if (simState.category === 'craftday') highlightItem = sData.hasWrapping ? `${sData.flowerCount} Bunga + Wrap 10K` : `1 Tangkai Tanpa Wrap`;
+                else if (simState.category === 'fresh') highlightItem = `${sData.flowerCount} Bunga Asli`;
+                else if (simState.category === 'artificial') highlightItem = `${sData.flowerCount} Bunga + ${sData.wrapSheets} Wrap`;
+                else if (simState.category === 'money') highlightItem = `${sData.slotCount} Lembar OPP`;
+                else if (simState.category === 'doll') highlightItem = `${sData.dollCount} Boneka Wisuda`;
+                else if (simState.category === 'hampers') highlightItem = `${sData.flowerCount} Mawar + ${sData.giftCount} Gift`;
+
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.onclick = () => { simState.size = sKey; populateSimSizes(); renderSimulator(); };
+                btn.className = `p-3 rounded-2xl border-2 text-left transition-all ${isSelected ? 'border-primary bg-primary text-white shadow-md' : 'border-gray-200 bg-white text-primary hover:border-bloom-pink'}`;
+                btn.innerHTML = `
+                    <div class="font-bold text-xs">${sKey}</div>
+                    <div class="text-[11px] ${isSelected ? 'text-bloom-pink' : 'text-bloom-dark'} font-bold mt-0.5">${formatRp(sData.price)}</div>
+                    <div class="text-[10px] ${isSelected ? 'text-gray-300' : 'text-gray-400'} mt-1">${highlightItem}</div>
+                `;
+                container.appendChild(btn);
+            });
+        }
+
+        function populateSubvariants() {
+            const select = document.getElementById('sim-subvariant');
+            const options = subvariantOptions[simState.category] || [];
+            select.innerHTML = options.map(o => `<option value="${o.val}">${o.label}</option>`).join('');
+            simState.subvariant = options[0]?.val || '';
+        }
+
+        function selectWrapperColor(primaryHex, secondaryHex, name) {
+            simState.wrapPrimary = primaryHex;
+            simState.wrapSecondary = secondaryHex;
+            simState.wrapName = name;
+            document.getElementById('selected-wrap-name').innerText = name;
+
+            document.querySelectorAll('.wrap-swatch').forEach(b => b.classList.remove('ring-2', 'ring-offset-2', 'ring-primary'));
+            event.currentTarget.classList.add('ring-2', 'ring-offset-2', 'ring-primary');
+            renderSimulator();
+        }
+
+        function switchStageMode(mode) {
+            simState.stageMode = mode;
+            const vecCont = document.getElementById('stage-vector-container');
+            const phoCont = document.getElementById('stage-photo-container');
+            const btnVec = document.getElementById('btn-view-vector');
+            const btnPho = document.getElementById('btn-view-photo');
+
+            if (mode === 'vector') {
+                vecCont.classList.remove('hidden');
+                phoCont.classList.add('hidden');
+                btnVec.className = "px-3 py-1 rounded-full text-[11px] font-bold bg-primary text-white transition-all";
+                btnPho.className = "px-3 py-1 rounded-full text-[11px] font-bold text-gray-600 hover:text-primary transition-all";
+            } else {
+                vecCont.classList.add('hidden');
+                phoCont.classList.remove('hidden');
+                btnPho.className = "px-3 py-1 rounded-full text-[11px] font-bold bg-primary text-white transition-all";
+                btnVec.className = "px-3 py-1 rounded-full text-[11px] font-bold text-gray-600 hover:text-primary transition-all";
+            }
+        }
+
+        // Helper SVG Generators for Realistic Bouquet / Hampers Elements
+        function drawRoseSVG(x, y, scale, c1, c2) {
+            return `
+                <g transform="translate(${x}, ${y}) scale(${scale})">
+                    <!-- Leaves behind flower -->
+                    <ellipse cx="-14" cy="6" rx="10" ry="5" transform="rotate(-30 -14 6)" fill="#588157"/>
+                    <ellipse cx="14" cy="6" rx="10" ry="5" transform="rotate(30 14 6)" fill="#3a5a40"/>
+                    <!-- Outer Petals -->
+                    <circle cx="0" cy="0" r="18" fill="${c2}" />
+                    <circle cx="-5" cy="-3" r="14" fill="${c1}" />
+                    <circle cx="5" cy="-3" r="14" fill="${c1}" />
+                    <circle cx="0" cy="5" r="14" fill="${c1}" />
+                    <!-- Inner Swirl Petals -->
+                    <circle cx="0" cy="-1" r="10" fill="${c2}" opacity="0.85"/>
+                    <path d="M-6,-2 C-2,-9 6,-7 6,0 C6,6 -4,7 -5,1 C-6,-3 0,-5 2,-2" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" opacity="0.65"/>
+                </g>
+            `;
+        }
+
+        // Generator Bunga Spesial Craftday: Gerbera, Peacock Aster, dan Krisan
+        function drawGerberaSVG(x, y, scale, c1, c2) {
+            let petals = '';
+            for (let a = 0; a < 360; a += 22.5) {
+                petals += `<ellipse cx="0" cy="-14" rx="4.2" ry="12" transform="rotate(${a})" fill="${a % 45 === 0 ? c1 : c2}" stroke="#ffffff" stroke-width="0.4" stroke-opacity="0.5"/>`;
+            }
+            return `
+                <g transform="translate(${x}, ${y}) scale(${scale})">
+                    <ellipse cx="-16" cy="10" rx="11" ry="5" transform="rotate(-25 -16 10)" fill="#588157"/>
+                    <ellipse cx="16" cy="10" rx="11" ry="5" transform="rotate(25 16 10)" fill="#3a5a40"/>
+                    ${petals}
+                    <circle cx="0" cy="0" r="7.5" fill="#7f4f24" stroke="#ffbe0b" stroke-width="2"/>
+                    <circle cx="0" cy="0" r="4" fill="#ffbe0b" opacity="0.8"/>
+                </g>
+            `;
+        }
+
+        function drawPeacockAsterSVG(x, y, scale) {
+            const clusters = [[-16, -6, '#9d4edd'], [16, -4, '#ffffff'], [0, -16, '#c77dff'], [-10, 10, '#ffffff'], [12, 10, '#9d4edd'], [0, 0, '#ffffff']];
+            const clusterSVG = clusters.map(([cx, cy, col]) => {
+                let rays = '';
+                for (let a = 0; a < 360; a += 36) {
+                    rays += `<ellipse cx="0" cy="-6" rx="1.8" ry="5" transform="rotate(${a})" fill="${col}"/>`;
+                }
+                return `<g transform="translate(${cx}, ${cy})">${rays}<circle cx="0" cy="0" r="3" fill="#ffbe0b"/></g>`;
+            }).join('');
+            return `
+                <g transform="translate(${x}, ${y}) scale(${scale})">
+                    <path d="M0,18 L-14,-4 M0,18 L14,-4 M0,18 L0,-14" stroke="#588157" stroke-width="2"/>
+                    ${clusterSVG}
+                </g>
+            `;
+        }
+
+        function drawKrisanSVG(x, y, scale, c1, c2) {
+            let outer = '', inner = '';
+            for (let a = 0; a < 360; a += 20) {
+                outer += `<ellipse cx="0" cy="-12" rx="3.8" ry="10" transform="rotate(${a})" fill="${c1}" stroke="${c2}" stroke-width="0.5"/>`;
+            }
+            for (let a = 10; a < 360; a += 30) {
+                inner += `<ellipse cx="0" cy="-7" rx="3" ry="6.5" transform="rotate(${a})" fill="#ffe5ec"/>`;
+            }
+            return `
+                <g transform="translate(${x}, ${y}) scale(${scale})">
+                    <ellipse cx="-15" cy="8" rx="10" ry="5" transform="rotate(-30 -15 8)" fill="#588157"/>
+                    <ellipse cx="15" cy="8" rx="10" ry="5" transform="rotate(30 15 8)" fill="#3a5a40"/>
+                    ${outer}
+                    ${inner}
+                    <circle cx="0" cy="0" r="4.5" fill="#ffd166"/>
+                </g>
+            `;
+        }
+
+        function drawCraftdayFlowerByType(type, x, y, scale) {
+            if (type === 'gerbera') return drawGerberaSVG(x, y, scale, '#ff758f', '#fb8500');
+            if (type === 'rose') return drawRoseSVG(x, y, scale, '#d90429', '#8d0801');
+            if (type === 'aster') return drawPeacockAsterSVG(x, y, scale);
+            if (type === 'krisan') return drawKrisanSVG(x, y, scale, '#ffafcc', '#fb6f92');
+            return drawGerberaSVG(x, y, scale, '#ff758f', '#fb8500');
+        }
+
+        function drawBabysBreathSVG(positions) {
+            return positions.map(([x, y]) => `
+                <g transform="translate(${x}, ${y})">
+                    <line x1="0" y1="0" x2="-6" y2="12" stroke="#84a59d" stroke-width="1.2"/>
+                    <line x1="0" y1="0" x2="6" y2="12" stroke="#84a59d" stroke-width="1.2"/>
+                    <circle cx="-4" cy="-2" r="3" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.6"/>
+                    <circle cx="4" cy="-3" r="2.6" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.6"/>
+                    <circle cx="0" cy="2" r="2.8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.6"/>
+                </g>
+            `).join('');
+        }
+
+        function drawGradBearSVG(x, y, scale, furColor) {
+            return `
+                <g transform="translate(${x}, ${y}) scale(${scale})">
+                    <!-- Ears -->
+                    <circle cx="-16" cy="-18" r="8" fill="${furColor}" stroke="#8d6e63" stroke-width="1"/>
+                    <circle cx="-16" cy="-18" r="4" fill="#d7ccc8"/>
+                    <circle cx="16" cy="-18" r="8" fill="${furColor}" stroke="#8d6e63" stroke-width="1"/>
+                    <circle cx="16" cy="-18" r="4" fill="#d7ccc8"/>
+                    <!-- Body in Graduation Gown -->
+                    <path d="M-18,10 L18,10 L22,36 L-22,36 Z" fill="#1e293b"/>
+                    <!-- Red/White Graduation Collar -->
+                    <path d="M-12,10 L0,22 L12,10 Z" fill="#ffffff"/>
+                    <path d="M-9,10 L0,19 L9,10 Z" fill="#e63946"/>
+                    <!-- Arms & Diploma Scroll -->
+                    <ellipse cx="-18" cy="20" rx="6" ry="9" fill="#1e293b"/>
+                    <ellipse cx="18" cy="20" rx="6" ry="9" fill="#1e293b"/>
+                    <rect x="8" y="16" width="16" height="5" rx="2" transform="rotate(-25 16 18)" fill="#fefae0" stroke="#d4a373" stroke-width="1"/>
+                    <line x1="15" y1="15" x2="17" y2="20" stroke="#e63946" stroke-width="2"/>
+                    <!-- Bear Head -->
+                    <circle cx="0" cy="-4" r="18" fill="${furColor}" stroke="#8d6e63" stroke-width="1"/>
+                    <ellipse cx="0" cy="1" rx="8" ry="6" fill="#f5ebe0"/>
+                    <!-- Eyes & Nose -->
+                    <circle cx="-6" cy="-7" r="2.2" fill="#1e293b"/>
+                    <circle cx="6" cy="-7" r="2.2" fill="#1e293b"/>
+                    <ellipse cx="0" cy="-1" rx="3.5" ry="2.5" fill="#4a2c2a"/>
+                    <!-- Mortarboard Toga Cap -->
+                    <polygon points="0,-29 -24,-21 0,-14 24,-21" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+                    <rect x="-11" y="-17" width="22" height="5" rx="2" fill="#1e293b"/>
+                    <!-- Gold Tassel -->
+                    <path d="M0,-21 L18,-18 L18,-9" fill="none" stroke="#eab308" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="18" cy="-8" r="2" fill="#eab308"/>
+                </g>
+            `;
+        }
+
+        function drawMoneySlotSVG(x, y, angle, c1, c2, isBlank) {
+            return `
+                <g transform="translate(${x}, ${y}) rotate(${angle})">
+                    <!-- Glossy OPP Plastic Sleeve -->
+                    <rect x="-20" y="-38" width="40" height="72" rx="4" fill="#ffffff" fill-opacity="0.65" stroke="#cbd5e1" stroke-width="1.2"/>
+                    <!-- Banknote Inside -->
+                    <rect x="-17" y="-34" width="34" height="64" rx="2" fill="${c1}" stroke="${c2}" stroke-width="1"/>
+                    ${!isBlank ? `
+                        <rect x="-13" y="-29" width="26" height="54" fill="none" stroke="#ffffff" stroke-opacity="0.5" stroke-width="0.8"/>
+                        <circle cx="0" cy="-6" r="8" fill="#ffffff" fill-opacity="0.35"/>
+                        <text x="0" y="16" font-size="6.5" font-weight="bold" fill="#ffffff" text-anchor="middle" font-family="sans-serif">RUPIAH</text>
+                    ` : `
+                        <text x="0" y="0" font-size="6" font-weight="bold" fill="#64748b" text-anchor="middle" font-family="sans-serif">SLOT OPP</text>
+                    `}
+                    <!-- Gloss Highlight -->
+                    <line x1="-14" y1="-32" x2="-14" y2="25" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.6"/>
+                </g>
+            `;
+        }
+
+        function renderSimulator() {
+            const catObj = officialCatalog.find(c => c.id === simState.category);
+            let sizeData = catObj.sizes[simState.size] || Object.values(catObj.sizes)[0];
+            const subSel = document.getElementById('sim-subvariant');
+            if (subSel && subSel.value) simState.subvariant = subSel.value;
+
+            const subList = subvariantOptions[simState.category] || [];
+            const activeSub = subList.find(s => s.val === simState.subvariant) || subList[0] || { color1: '#e63946', color2: '#9b2226' };
+
+            // Calculate Add-ons
+            let addonsTotal = 0;
+            let activeAddons = [];
+            document.querySelectorAll('.sim-addon:checked').forEach(cb => {
+                addonsTotal += parseInt(cb.dataset.price);
+                activeAddons.push(cb.value);
+            });
+
+            // Dynamic Calculation for Unlimited Craftday vs Regular Categories
+            let basePrice = sizeData.price;
+            let currentTitle = `${catObj.title} — ${simState.size}`;
+            let currentSpec = sizeData.spec;
+            let totalCraftStems = 1;
+
+            if (simState.category === 'craftday') {
+                totalCraftStems = getTotalCraftdayStems();
+                const wrapCost = simState.craftdayWrap ? 10000 : 0;
+                basePrice = (totalCraftStems * 5000) + wrapCost;
+
+                document.getElementById('craftday-total-stems-badge').innerText = `Total: ${totalCraftStems} Tangkai (${formatRp(totalCraftStems * 5000)})`;
+
+                const stemParts = [];
+                if (simState.craftdayStems.gerbera > 0) stemParts.push(`${simState.craftdayStems.gerbera} Gerbera`);
+                if (simState.craftdayStems.rose > 0) stemParts.push(`${simState.craftdayStems.rose} Rose`);
+                if (simState.craftdayStems.aster > 0) stemParts.push(`${simState.craftdayStems.aster} Peacock Aster`);
+                if (simState.craftdayStems.krisan > 0) stemParts.push(`${simState.craftdayStems.krisan} Krisan`);
+
+                const wrapDesc = simState.craftdayWrap
+                    ? 'Full Paper Flower (+Rp10.000) & Pita Satin'
+                    : 'Plastik Sleeve Bening & Pita Manis (Tanpa Paper Flower)';
+
+                currentTitle = `Craftday Custom — ${totalCraftStems} Tangkai ${simState.craftdayWrap ? '+ Paper Flower' : '(Sleeve)'}`;
+                currentSpec = `${totalCraftStems} Tangkai Bunga (${stemParts.join(', ')}) + ${wrapDesc}`;
+            }
+
+            const finalPrice = basePrice + addonsTotal;
+            const stampsEarned = Math.max(1, Math.floor(finalPrice / 50000));
+            const greetingText = document.getElementById('sim-greeting-input').value || 'With Love, Bloom & Bliss';
+
+            // Update Text Labels
+            document.getElementById('stage-product-title').innerText = currentTitle;
+            document.getElementById('stage-materials-list').innerText = currentSpec;
+            document.getElementById('sim-total-price').innerText = formatRp(finalPrice);
+            document.getElementById('stage-stamp-earn').innerText = finalPrice >= 50000 ? `+${stampsEarned} Stamp Loyalty` : `Tambah ${formatRp(50000 - finalPrice)} u/ +1 Stamp`;
+
+            // Update Real Photo Reference View
+            document.getElementById('stage-real-photo').src = sizeData.photo;
+            document.getElementById('photo-spec-desc').innerText = `${currentSpec}. Warna Kemasan/Pita: ${simState.wrapName}.`;
+            document.getElementById('photo-color-indicator').innerHTML = `<span class="w-3 h-3 rounded-full inline-block border border-gray-300" style="background:${simState.wrapPrimary}"></span> ${simState.wrapName}`;
+
+            // Build High-Detail Layered SVG Artwork
+            const w1 = simState.wrapPrimary;
+            const w2 = simState.wrapSecondary;
+            let mainContentSVG = '';
+
+            // Coordinates for 3, 6, or 10 flowers
+            const pos3 = [[-36, 135, 1.05], [36, 135, 1.05], [0, 115, 1.15]];
+            const pos6 = [[-55, 148, 0.95], [55, 148, 0.95], [-25, 138, 1.0], [25, 138, 1.0], [-22, 108, 1.05], [22, 108, 1.05]];
+            const pos10 = [
+                [-68, 152, 0.88], [68, 152, 0.88], [-38, 150, 0.92], [38, 150, 0.92], [0, 146, 0.95],
+                [-48, 120, 0.95], [48, 120, 0.95], [-18, 118, 1.0], [18, 118, 1.0], [0, 92, 1.08]
+            ];
+
+            if (simState.category === 'craftday') {
+                // Build flat list of selected Craftday stems
+                const flowerQueue = [];
+                ['gerbera', 'rose', 'aster', 'krisan'].forEach(type => {
+                    const count = simState.craftdayStems[type] || 0;
+                    for (let i = 0; i < count; i++) flowerQueue.push(type);
+                });
+
+                const fCount = flowerQueue.length;
+                // Render up to 24 visible flower heads on stage so even large custom orders look lush & realistic
+                const maxVisual = Math.min(fCount, 24);
+
+                // Draw realistic green stems going down into the wrapper
+                mainContentSVG += `<path d="M190,125 L190,325" stroke="#3a5a40" stroke-width="5" stroke-linecap="round"/>`;
+                if (fCount >= 2) {
+                    mainContentSVG += `<path d="M162,135 L188,280 M218,135 L192,280" stroke="#588157" stroke-width="4.5" stroke-linecap="round"/>`;
+                }
+                mainContentSVG += drawBabysBreathSVG([[145, 115], [235, 115], [190, 86]]);
+
+                if (maxVisual === 1) {
+                    mainContentSVG += drawCraftdayFlowerByType(flowerQueue[0], 190, 122, 1.55);
+                } else if (maxVisual === 2) {
+                    mainContentSVG += drawCraftdayFlowerByType(flowerQueue[0], 162, 132, 1.25);
+                    mainContentSVG += drawCraftdayFlowerByType(flowerQueue[1], 218, 122, 1.3);
+                } else if (maxVisual === 3) {
+                    mainContentSVG += drawCraftdayFlowerByType(flowerQueue[0], 154, 138, 1.15);
+                    mainContentSVG += drawCraftdayFlowerByType(flowerQueue[1], 226, 138, 1.15);
+                    mainContentSVG += drawCraftdayFlowerByType(flowerQueue[2], 190, 112, 1.28);
+                } else {
+                    // Dynamic multi-row dome arrangement for 4 to 24+ stems
+                    const scale = maxVisual <= 6 ? 1.02 : (maxVisual <= 12 ? 0.86 : 0.72);
+                    for (let i = 0; i < maxVisual; i++) {
+                        const t = i / (maxVisual - 1); // 0 to 1
+                        const tier = i % 3; // 0: top, 1: mid, 2: front
+                        const spreadX = (t - 0.5) * (maxVisual <= 6 ? 125 : 155);
+                        const archY = Math.pow((t - 0.5) * 2, 2) * 24;
+                        const fx = 190 + spreadX;
+                        const fy = 95 + tier * 24 + archY;
+                        mainContentSVG += drawCraftdayFlowerByType(flowerQueue[i], fx, fy, scale);
+                    }
+                }
+
+                // Show stem count badge if user inputs a large bouquet
+                if (fCount > 1) {
+                    mainContentSVG += `
+                        <g transform="translate(190, 42)">
+                            <rect x="-64" y="-12" width="128" height="22" rx="11" fill="#7f4f24" stroke="#ffffff" stroke-width="1.2"/>
+                            <text x="0" y="2" font-size="8" font-weight="bold" fill="#ffffff" text-anchor="middle" font-family="sans-serif">${fCount} TANGKAI CRAFTDAY</text>
+                        </g>
+                    `;
+                }
+            } else if (simState.category === 'fresh' || simState.category === 'artificial') {
+                const fCount = sizeData.flowerCount;
+                const coords = fCount === 3 ? pos3 : (fCount === 6 ? pos6 : pos10);
+                const babyPositions = [[-50, 100], [50, 100], [0, 82], [-70, 135], [70, 135], [-25, 155], [25, 155]];
+                
+                mainContentSVG += drawBabysBreathSVG(babyPositions);
+                coords.forEach(([x, y, sc]) => {
+                    mainContentSVG += drawRoseSVG(190 + x, y, sc, activeSub.color1, activeSub.color2);
+                });
+            } else if (simState.category === 'money') {
+                const slots = sizeData.slotCount; // 10, 15, or 20
+                const isBlank = simState.subvariant === 'kosong';
+                // Arrange in 2 or 3 fan tiers
+                const topRowCount = slots === 10 ? 5 : (slots === 15 ? 8 : 10);
+                const botRowCount = slots - topRowCount;
+
+                for (let i = 0; i < topRowCount; i++) {
+                    const spread = (i - (topRowCount - 1) / 2);
+                    const x = 190 + spread * 18;
+                    const y = 102 + Math.abs(spread) * 4;
+                    const ang = spread * 7;
+                    mainContentSVG += drawMoneySlotSVG(x, y, ang, activeSub.color1, activeSub.color2, isBlank);
+                }
+                for (let i = 0; i < botRowCount; i++) {
+                    const spread = (i - (botRowCount - 1) / 2);
+                    const x = 190 + spread * 20;
+                    const y = 142 + Math.abs(spread) * 3;
+                    const ang = spread * 6;
+                    mainContentSVG += drawMoneySlotSVG(x, y, ang, activeSub.color1, activeSub.color2, isBlank);
+                }
+                mainContentSVG += drawBabysBreathSVG([[130, 165], [160, 170], [190, 168], [220, 170], [250, 165]]);
+            } else if (simState.category === 'doll') {
+                const dCount = sizeData.dollCount; // 1, 3, or 5
+                const fCount = sizeData.flowerCount; // 3, 0, or 5
+                const fur = activeSub.color1;
+                const rColor = activeSub.color2;
+
+                if (dCount === 1) {
+                    mainContentSVG += drawRoseSVG(140, 148, 0.9, rColor, '#9b2226');
+                    mainContentSVG += drawRoseSVG(240, 148, 0.9, rColor, '#9b2226');
+                    mainContentSVG += drawRoseSVG(190, 162, 0.9, rColor, '#9b2226');
+                    mainContentSVG += drawGradBearSVG(190, 118, 1.15, fur);
+                } else if (dCount === 3) {
+                    mainContentSVG += drawGradBearSVG(138, 136, 0.92, fur);
+                    mainContentSVG += drawGradBearSVG(242, 136, 0.92, fur);
+                    mainContentSVG += drawGradBearSVG(190, 115, 1.05, fur);
+                } else {
+                    // Large: 5 Graduation Bears + 5 Roses + Topper
+                    mainContentSVG += `
+                        <g transform="translate(190, 52)">
+                            <line x1="0" y1="0" x2="0" y2="40" stroke="#d4a373" stroke-width="2"/>
+                            <rect x="-46" y="-18" width="92" height="24" rx="8" fill="#eab308" stroke="#ffffff" stroke-width="1.5"/>
+                            <text x="0" y="-3" font-size="8.5" font-weight="bold" fill="#1e293b" text-anchor="middle" font-family="serif">Happy Graduation</text>
+                        </g>
+                    `;
+                    mainContentSVG += drawGradBearSVG(128, 122, 0.78, fur);
+                    mainContentSVG += drawGradBearSVG(252, 122, 0.78, fur);
+                    mainContentSVG += drawGradBearSVG(158, 105, 0.82, fur);
+                    mainContentSVG += drawGradBearSVG(222, 105, 0.82, fur);
+                    mainContentSVG += drawGradBearSVG(190, 125, 0.88, fur);
+                    [130, 160, 190, 220, 250].forEach(rx => {
+                        mainContentSVG += drawRoseSVG(rx, 164, 0.75, rColor, '#9b2226');
+                    });
+                }
+            }
+
+            // Add-on Visual Overlays (Chocolate, Party Kit, Fairy LED)
+            let addonVisualsSVG = '';
+            if (activeAddons.includes('choco')) {
+                addonVisualsSVG += `
+                    <g transform="translate(255, 135) rotate(14)">
+                        <rect x="-18" y="-26" width="36" height="48" rx="4" fill="#4a2c2a" stroke="#eab308" stroke-width="2"/>
+                        <rect x="-14" y="-10" width="28" height="16" fill="#eab308"/>
+                        <text x="0" y="1" font-size="6.5" font-weight="bold" fill="#4a2c2a" text-anchor="middle">CHOCO</text>
+                    </g>
+                `;
+            }
+            if (activeAddons.includes('party')) {
+                addonVisualsSVG += `
+                    <g transform="translate(308, 305)">
+                        <polygon points="0,-24 -14,12 14,12" fill="#f4acb7" stroke="#b5535f" stroke-width="1.5"/>
+                        <circle cx="0" cy="-26" r="5" fill="#eab308"/>
+                        <text x="0" y="25" font-size="7.5" font-weight="bold" fill="#b5535f" text-anchor="middle">Party Starter Kit</text>
+                    </g>
+                `;
+            }
+            if (activeAddons.includes('led')) {
+                const ledPoints = [[135, 95], [165, 78], [215, 82], [248, 102], [150, 145], [190, 130], [232, 148], [175, 175], [210, 172]];
+                addonVisualsSVG += ledPoints.map(([lx, ly], idx) => `
+                    <circle cx="${lx}" cy="${ly}" r="3.5" fill="#fde047" class="led-dot" style="animation-delay:${idx * 0.2}s"/>
+                `).join('');
+            }
+
+            // Floating Greeting Card SVG
+            const greetingCardSVG = `
+                <g transform="translate(190, 208)">
+                    <rect x="-68" y="-15" width="136" height="28" rx="6" fill="#ffffff" stroke="#e5989b" stroke-width="1.5" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.08))"/>
+                    <text x="0" y="3" font-size="7.5" font-weight="bold" fill="#2b2d42" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif">${greetingText.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</text>
+                </g>
+            `;
+
+            // Render either Single Stem Clear Sleeve, Bouquet Wrapping, or Hampers Basket
+            const canvas = document.getElementById('svg-bouquet-canvas');
+            if (simState.category === 'craftday' && !simState.craftdayWrap) {
+                // CLEAR SLEEVE (TANPA WRAPPING CELLOPHANE PENUH - +Rp 0)
+                canvas.innerHTML = `
+                    <svg viewBox="0 0 380 380" class="w-full h-full overflow-visible">
+                        <!-- Clear OPP Single-Stem Cone Sleeve -->
+                        <polygon points="135,75 245,75 208,340 172,340" fill="#ffffff" fill-opacity="0.45" stroke="#cbd5e1" stroke-width="1.8" stroke-dasharray="4,2"/>
+                        <line x1="148" y1="80" x2="178" y2="335" stroke="#ffffff" stroke-width="2.5" stroke-opacity="0.7"/>
+                        
+                        <!-- Stems & Flowers Inside -->
+                        ${mainContentSVG}
+
+                        <!-- Cute Ribbon Bow on Sleeve -->
+                        <rect x="172" y="246" width="36" height="10" rx="5" fill="${w1}" stroke="${w2}" stroke-width="1.2"/>
+                        <path d="M190,251 C168,234 158,264 187,254 Z" fill="${w2}"/>
+                        <path d="M190,251 C212,234 222,264 193,254 Z" fill="${w2}"/>
+                        <path d="M188,254 Q175,285 168,305" fill="none" stroke="${w2}" stroke-width="4" stroke-linecap="round"/>
+                        <path d="M192,254 Q205,285 212,305" fill="none" stroke="${w2}" stroke-width="4" stroke-linecap="round"/>
+                        <circle cx="190" cy="251" r="4.5" fill="#ffffff" stroke="${w2}" stroke-width="1.5"/>
+
+                        <!-- Craftday 5K/Stem Badge -->
+                        <g transform="translate(190, 35)">
+                            <rect x="-74" y="-14" width="148" height="24" rx="12" fill="#7f4f24"/>
+                            <text x="0" y="2" font-size="8.5" font-weight="bold" fill="#ffffff" text-anchor="middle" font-family="sans-serif">CRAFTDAY ${totalCraftStems} TANGKAI (${formatRp(totalCraftStems * 5000)})</text>
+                        </g>
+
+                        ${greetingCardSVG}
+                        ${addonVisualsSVG}
+                    </svg>
+                `;
+            } else if (simState.category !== 'hampers') {
+                canvas.innerHTML = `
+                    <svg viewBox="0 0 380 380" class="w-full h-full overflow-visible">
+                        <defs>
+                            <linearGradient id="wrapGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="${w1}"/>
+                                <stop offset="100%" stop-color="${w2}"/>
+                            </linearGradient>
+                            <linearGradient id="wrapGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="${w1}" stop-opacity="0.9"/>
+                                <stop offset="100%" stop-color="#ffffff" stop-opacity="0.4"/>
+                            </linearGradient>
+                        </defs>
+
+                        <!-- Back Multi-Layer Cellophane Wrapping -->
+                        <polygon points="190,260 65,115 115,65 190,110" fill="url(#wrapGrad1)" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.6"/>
+                        <polygon points="190,260 315,115 265,65 190,110" fill="url(#wrapGrad1)" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.6"/>
+                        <polygon points="190,255 95,80 190,48 285,80" fill="url(#wrapGrad2)" stroke="#ffffff" stroke-width="1.5"/>
+                        
+                        <!-- Inner White Tissue Paper Pleats -->
+                        <path d="M105,130 Q145,95 190,115 Q235,95 275,130 L235,245 L145,245 Z" fill="#ffffff" fill-opacity="0.82"/>
+
+                        <!-- Main Bouquet Content (Flowers / Money / Bears) -->
+                        ${mainContentSVG}
+
+                        <!-- Front Lower Wrapping Fold & Skirt -->
+                        <polygon points="105,175 190,225 275,175 235,280 145,280" fill="url(#wrapGrad1)" opacity="0.95"/>
+                        <polygon points="135,275 245,275 268,352 112,352" fill="url(#wrapGrad1)"/>
+                        <polygon points="148,275 232,275 245,352 135,352" fill="url(#wrapGrad2)" opacity="0.55"/>
+
+                        <!-- Luxury Satin Ribbon & Bow at Waist -->
+                        <rect x="142" y="266" width="96" height="14" rx="7" fill="#ffffff" fill-opacity="0.9" stroke="${w2}" stroke-width="1.5"/>
+                        <path d="M190,273 C160,250 145,285 186,276 Z" fill="${w2}"/>
+                        <path d="M190,273 C220,250 235,285 194,276 Z" fill="${w2}"/>
+                        <path d="M186,276 Q168,315 156,338" fill="none" stroke="${w2}" stroke-width="5" stroke-linecap="round"/>
+                        <path d="M194,276 Q212,315 224,338" fill="none" stroke="${w2}" stroke-width="5" stroke-linecap="round"/>
+                        <circle cx="190" cy="273" r="6" fill="#ffffff" stroke="${w2}" stroke-width="2"/>
+
+                        <!-- Greeting Card & Addons -->
+                        ${greetingCardSVG}
+                        ${addonVisualsSVG}
+                    </svg>
+                `;
+            } else {
+                // HAMPERS BASKET / WOODEN BOX VISUALIZATION
+                const fCount = sizeData.flowerCount; // 1, 3, 6, 10
+                const gCount = sizeData.giftCount;   // 1, 1, 2, 3
+                let hamperFlowers = '';
+                for (let i = 0; i < fCount; i++) {
+                    const fx = 115 + (i % 5) * 26;
+                    const fy = i < 5 ? 175 : 148;
+                    hamperFlowers += drawRoseSVG(fx, fy, 0.82, '#e63946', '#9b2226');
+                }
+
+                let hamperGifts = '';
+                if (gCount >= 1) {
+                    hamperGifts += `
+                        <g transform="translate(238, 155)">
+                            <rect x="-22" y="-35" width="44" height="58" rx="5" fill="${w1}" stroke="#ffffff" stroke-width="1.5"/>
+                            <rect x="-16" y="-22" width="32" height="18" rx="2" fill="#ffffff" opacity="0.85"/>
+                            <text x="0" y="-10" font-size="6.5" font-weight="bold" fill="#2b2d42" text-anchor="middle">PREMIUM</text>
+                            <text x="0" y="-2" font-size="6" fill="#b5535f" text-anchor="middle">GIFT / SNACK</text>
+                        </g>
+                    `;
+                }
+                if (gCount >= 2) {
+                    hamperGifts += `
+                        <g transform="translate(272, 145)">
+                            <!-- Syrup Bottle & Scented Candle -->
+                            <rect x="-12" y="-48" width="24" height="68" rx="6" fill="#7f1d1d" stroke="#fde047" stroke-width="1.5"/>
+                            <rect x="-5" y="-64" width="10" height="18" rx="2" fill="#eab308"/>
+                            <rect x="-10" y="-25" width="20" height="24" fill="#fefae0"/>
+                            <text x="0" y="-11" font-size="5.5" font-weight="bold" fill="#7f1d1d" text-anchor="middle">SYRUP</text>
+                        </g>
+                    `;
+                }
+                if (gCount >= 3) {
+                    hamperGifts += `
+                        <g transform="translate(195, 132)">
+                            <rect x="-20" y="-26" width="40" height="44" rx="6" fill="#fefae0" stroke="#d4a373" stroke-width="1.5"/>
+                            <text x="0" y="-4" font-size="6.5" font-weight="bold" fill="#bc6c25" text-anchor="middle">AROMA</text>
+                            <text x="0" y="5" font-size="5.5" fill="#6b7280" text-anchor="middle">CANDLE</text>
+                        </g>
+                    `;
+                }
+
+                canvas.innerHTML = `
+                    <svg viewBox="0 0 380 380" class="w-full h-full overflow-visible">
+                        <!-- Arch Rattan Handle -->
+                        <path d="M95,195 C95,45 285,45 285,195" fill="none" stroke="${activeSub.color1}" stroke-width="10" stroke-linecap="round"/>
+                        <path d="M95,195 C95,45 285,45 285,195" fill="none" stroke="#faedcd" stroke-width="3" stroke-dasharray="6,6"/>
+
+                        <!-- Shredded Paper Filler -->
+                        <ellipse cx="190" cy="192" rx="98" ry="22" fill="#faedcd"/>
+
+                        <!-- Gifts & Fresh Roses Inside Hampers -->
+                        ${drawBabysBreathSVG([[110, 145], [150, 135], [220, 125], [275, 165]])}
+                        ${hamperGifts}
+                        ${hamperFlowers}
+
+                        <!-- Woven Rattan Basket / Wooden Box Body -->
+                        <polygon points="82,192 298,192 276,315 104,315" fill="${activeSub.color1}" stroke="#8d6e63" stroke-width="2"/>
+                        <!-- Woven Texture Lines -->
+                        <line x1="90" y1="222" x2="290" y2="222" stroke="#faedcd" stroke-width="2" stroke-dasharray="12,8" opacity="0.65"/>
+                        <line x1="96" y1="252" x2="284" y2="252" stroke="#faedcd" stroke-width="2" stroke-dasharray="12,8" opacity="0.65"/>
+                        <line x1="100" y1="282" x2="280" y2="282" stroke="#faedcd" stroke-width="2" stroke-dasharray="12,8" opacity="0.65"/>
+                        <rect x="76" y="184" width="228" height="14" rx="6" fill="#a98467"/>
+
+                        <!-- Satin Ribbon Drape on Basket -->
+                        <rect x="88" y="235" width="204" height="16" fill="${w1}" opacity="0.9"/>
+                        <circle cx="190" cy="243" r="10" fill="${w2}"/>
+                        <path d="M190,243 L165,288 M190,243 L215,288" stroke="${w2}" stroke-width="6" stroke-linecap="round"/>
+
+                        ${greetingCardSVG}
+                        ${addonVisualsSVG}
+                    </svg>
+                `;
+            }
+        }
+
+        function loadIntoSimulator(catId, sizeKey) {
+            simState.category = catId;
+            simState.size = sizeKey;
+            if (catId === 'craftday') {
+                if (sizeKey === '1 Tangkai (Only 5K)') {
+                    simState.craftdayStems = { gerbera: 1, rose: 0, aster: 0, krisan: 0 };
+                    setCraftdayWrapping(false);
+                } else if (sizeKey === '1 Tangkai + Wrapping') {
+                    simState.craftdayStems = { gerbera: 1, rose: 0, aster: 0, krisan: 0 };
+                    setCraftdayWrapping(true);
+                } else {
+                    simState.craftdayStems = { gerbera: 1, rose: 1, aster: 1, krisan: 0 };
+                    setCraftdayWrapping(true);
+                }
+                ['gerbera', 'rose', 'aster', 'krisan'].forEach(t => {
+                    const el = document.getElementById(`stem-input-${t}`);
+                    if (el) el.value = simState.craftdayStems[t];
+                });
+            }
+            selectSimCategory(catId);
+            document.getElementById('diy').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // =========================================================================
+        // 3. REAL-TIME MEMBER LOGIN & STAMP LOYALTY SYSTEM (NO PASSWORD, WA + PIN KASIR)
+        // =========================================================================
+        let currentStamps = 0;
+        let lifetimeStamps = 0;
+        const maxStamps = 5;
+        let activeMember = null; // { name, wa, memberId, stamps, lifetimeStamps, referralCode }
+
+        // Daftar Kode Kasir / Voucher Resmi yang bisa diberikan Admin ke Customer
+        const VALID_CASHIER_CODES = {
+            'BLOOM50': { add: 1, desc: 'Transaksi Rp 50.000 (+1 Stamp)' },
+            'BLISS100': { add: 2, desc: 'Transaksi Rp 100.000 (+2 Stamp)' },
+            'CRAFTDAY5': { add: 1, desc: 'Promo Spesial Craftday (+1 Stamp)' },
+            'KWU2026': { add: 5, desc: 'Voucher VIP Presentasi KWU (+5 Stamp Penuh)' }
+        };
+
+        function normalizePhone(raw) {
+            let clean = raw.replace(/[^0-9]/g, '');
+            if (clean.startsWith('62')) clean = '0' + clean.slice(2);
+            return clean;
+        }
+
+        function loadMemberDatabase() {
+            try {
+                return JSON.parse(localStorage.getItem('bloom_members_db') || '{}');
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function saveMemberDatabase(db) {
+            localStorage.setItem('bloom_members_db', JSON.stringify(db));
+        }
+
+        function handleMemberLogin(e) {
+            if (e) e.preventDefault();
+            const nameInput = document.getElementById('member-name-input').value.trim();
+            const waInput = normalizePhone(document.getElementById('member-wa-input').value.trim());
+
+            if (!nameInput || waInput.length < 9) {
+                openModal('Mohon masukkan Nama Lengkap dan Nomor WhatsApp yang valid (minimal 9 digit).', 'Data Belum Lengkap');
+                return;
+            }
+
+            const db = loadMemberDatabase();
+            if (!db[waInput]) {
+                // Buat Member Baru otomatis dengan 1 Welcome Stamp
+                const last4 = waInput.slice(-4);
+                const cleanPrefix = nameInput.replace(/[^a-zA-Z]/g, '').toUpperCase().slice(0, 4) || 'USER';
+                db[waInput] = {
+                    name: nameInput,
+                    wa: waInput,
+                    memberId: `BB-${last4}`,
+                    stamps: 1, // Bonus 1 stamp pendaftaran member baru
+                    lifetimeStamps: 1,
+                    referralCode: `BLOOM-${cleanPrefix}${last4}`
+                };
+                saveMemberDatabase(db);
+                openModal(`Selamat datang di Bloom & Bliss, Kak ${nameInput}! Akun Member Anda (#BB-${last4}) berhasil aktif dan Anda mendapatkan 1 Welcome Stamp gratis!`, 'Member Berhasil Aktif 🎉');
+            } else {
+                db[waInput].name = nameInput;
+                saveMemberDatabase(db);
+            }
+
+            activeMember = db[waInput];
+            localStorage.setItem('bloom_active_member_wa', waInput);
+            syncMemberUI();
+        }
+
+        function handleMemberLogout() {
+            activeMember = null;
+            currentStamps = 0;
+            lifetimeStamps = 0;
+            localStorage.removeItem('bloom_active_member_wa');
+            syncMemberUI();
+        }
+
+        function syncMemberUI() {
+            const loginForm = document.getElementById('member-login-form');
+            const activePanel = document.getElementById('member-active-panel');
+            const statusPill = document.getElementById('member-status-pill');
+            const authTitle = document.getElementById('auth-box-title');
+
+            if (activeMember) {
+                currentStamps = activeMember.stamps;
+                lifetimeStamps = activeMember.lifetimeStamps || activeMember.stamps;
+
+                loginForm.classList.add('hidden');
+                activePanel.classList.remove('hidden');
+                statusPill.innerText = 'Member Aktif';
+                statusPill.className = 'text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700';
+                authTitle.innerText = 'Akun Member Terhubung';
+
+                document.getElementById('logged-member-name').innerText = activeMember.name;
+                document.getElementById('logged-member-wa').innerText = `WA: ${activeMember.wa} • ID: #${activeMember.memberId}`;
+                document.getElementById('card-holder-name').innerText = activeMember.name;
+                document.getElementById('card-holder-meta').innerText = `No. WA: ${activeMember.wa} • 1 Stamp tiap Rp 50.000`;
+                document.getElementById('card-member-id').innerText = `#${activeMember.memberId}`;
+                document.getElementById('member-referral-code').innerText = activeMember.referralCode;
+            } else {
+                loginForm.classList.remove('hidden');
+                activePanel.classList.add('hidden');
+                statusPill.innerText = 'Belum Login';
+                statusPill.className = 'text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-gray-100 text-gray-600';
+                authTitle.innerText = 'Masuk / Daftar Kartu Member';
+
+                document.getElementById('card-holder-name').innerText = 'Kartu Stempel Digital';
+                document.getElementById('card-holder-meta').innerText = 'Masuk dengan No. WA untuk menyimpan progres otomatis';
+                document.getElementById('card-member-id').innerText = 'GUEST';
+                document.getElementById('member-referral-code').innerText = 'BLOOMBLISS26';
+            }
+
+            updateStampUI();
+        }
+
+        function redeemCashierCode() {
+            if (!activeMember) {
+                openModal('Silakan masuk dengan Nama & Nomor WhatsApp Anda terlebih dahulu agar stempel tersimpan di akun Anda.', 'Login Member Diperlukan');
+                return;
+            }
+
+            const codeInput = document.getElementById('cashier-code-input');
+            const code = codeInput.value.trim().toUpperCase();
+
+            if (!code) {
+                openModal('Masukkan Kode Kasir / Voucher terlebih dahulu (Contoh: BLOOM50 atau BLISS100).', 'Kode Kosong');
+                return;
+            }
+
+            const voucher = VALID_CASHIER_CODES[code];
+            if (!voucher) {
+                openModal(`Kode "${code}" tidak ditemukan. Mintalah kode transaksi resmi kepada Admin Kasir saat berbelanja (Coba: BLOOM50 atau BLISS100).`, 'Kode Tidak Valid');
+                return;
+            }
+
+            currentStamps = Math.min(maxStamps, currentStamps + voucher.add);
+            lifetimeStamps += voucher.add;
+
+            // Update Database
+            const db = loadMemberDatabase();
+            activeMember.stamps = currentStamps;
+            activeMember.lifetimeStamps = lifetimeStamps;
+            db[activeMember.wa] = activeMember;
+            saveMemberDatabase(db);
+
+            codeInput.value = '';
+            updateStampUI();
+
+            if (currentStamps >= maxStamps) {
+                openModal(`Kode ${code} berhasil diklaim (${voucher.desc})! Selamat Kak ${activeMember.name}, 5 Stamp Anda sudah PENUH! Silakan klik tombol "Klaim Free Small Bouquet" pada kartu member Anda.`, '5 Stamp Terkumpul! 🎉');
+            } else {
+                openModal(`Berhasil! Kode ${code} (${voucher.desc}) telah ditambahkan ke kartu member #${activeMember.memberId}. Saat ini Anda memiliki ${currentStamps}/5 Stamp.`, 'Stamp Berhasil Ditambahkan ✨');
+            }
+        }
+
+        function claimRewardViaWA() {
+            if (!activeMember || currentStamps < maxStamps) return;
+
+            const claimCode = `CLAIM-${activeMember.memberId}-${Math.floor(100 + Math.random() * 900)}`;
+            const text = `Halo Admin Bloom & Bliss (Kak Dimas), saya ingin *Klaim Reward 5 Stamp Loyalty (Free Small Bouquet)*:\n\n• *Nama Member*: ${activeMember.name}\n• *ID Member*: #${activeMember.memberId}\n• *Nomor WA*: ${activeMember.wa}\n• *Status Stamp*: ${currentStamps} / 5 Stamp Penuh\n• *Kode Klaim Resmi*: ${claimCode}\n\nMohon konfirmasi klaim hadiah saya, terima kasih!`;
+            const waUrl = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(text)}`;
+
+            // Reset putaran stamp ke 0 setelah klaim disiapkan
+            const db = loadMemberDatabase();
+            currentStamps = 0;
+            activeMember.stamps = 0;
+            db[activeMember.wa] = activeMember;
+            saveMemberDatabase(db);
+            updateStampUI();
+
+            openModal(`Selamat Kak ${activeMember.name}! Kode Klaim Hadiah Anda adalah ${claimCode}. Klik tombol di bawah untuk mengirim bukti klaim ke WhatsApp Admin (Kak Dimas) dan mengambil Free Small Bouquet Anda.`, 'Klaim Reward Berhasil!', waUrl);
+        }
+
+        function updateStampUI() {
+            const stamps = document.querySelectorAll('.stamp-circle');
+            stamps.forEach((stamp, index) => {
+                if (index < currentStamps) {
+                    stamp.classList.add('stamp-active');
+                    stamp.classList.remove('bg-gray-50', 'border-gray-300', 'text-gray-300', 'border-dashed');
+                    if (index < 4) stamp.innerHTML = '<i class="ph-fill ph-flower-tulip"></i>';
+                } else {
+                    stamp.classList.remove('stamp-active');
+                    if (index < 4) {
+                        stamp.classList.add('bg-gray-50', 'border-gray-300', 'text-gray-300', 'border-dashed');
+                        stamp.innerHTML = index + 1;
+                    }
+                }
+            });
+
+            const pct = (currentStamps / maxStamps) * 100;
+            document.getElementById('stamp-progress').style.width = `${pct}%`;
+            document.getElementById('stamp-counter-badge').innerText = `${currentStamps} / ${maxStamps} Stamp`;
+            document.getElementById('stamp-lifetime-info').innerText = `Total Akumulasi Member: ${lifetimeStamps} Stamp`;
+
+            const needed = maxStamps - currentStamps;
+            const msgEl = document.getElementById('stamp-message');
+            const claimBox = document.getElementById('claim-reward-box');
+
+            if (needed <= 0) {
+                msgEl.innerHTML = '<span class="text-bloom-rose font-bold">🎉 5 Stamp Terkumpul! Anda berhak klaim Free Small Bouquet sekarang.</span><span id="stamps-needed" class="hidden">0</span>';
+                if (claimBox) claimBox.classList.remove('hidden');
+            } else {
+                msgEl.innerHTML = `Kumpulkan <span id="stamps-needed" class="font-bold text-bloom-rose">${needed}</span> stamp lagi untuk klaim Free Small Bouquet!`;
+                if (claimBox) claimBox.classList.add('hidden');
+            }
+        }
+
+        function copyReferral() {
+            const codeToCopy = activeMember ? activeMember.referralCode : 'BLOOMBLISS26';
+            const tempInput = document.createElement('input');
+            tempInput.value = codeToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            openModal(`Kode Referral "${codeToCopy}" berhasil disalin! Bagikan ke teman Anda untuk mendapatkan diskon ekstra dan tambahan Stamp Loyalty.`, 'Kode Referral Disalin');
+        }
+
+        // =========================================================================
+        // 5. WHATSAPP ORDER & O2O RESERVATION HANDLERS
+        // =========================================================================
+        function openModal(message, title = 'Informasi', waUrl = '') {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-message').innerText = message;
+            const waBtn = document.getElementById('modal-wa-link');
+            if (waUrl) {
+                waBtn.href = waUrl;
+                waBtn.classList.remove('hidden');
+                waBtn.classList.add('flex');
+            } else {
+                waBtn.classList.add('hidden');
+                waBtn.classList.remove('flex');
+            }
+            document.getElementById('modal-overlay').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('active');
+        }
+
+        function directOrderWA(productTitle, sizeKey, price, spec) {
+            const text = `Halo Admin Bloom & Bliss (Kak Dimas), saya ingin memesan:\n\n• *Produk*: ${productTitle}\n• *Ukuran*: ${sizeKey}\n• *Komposisi*: ${spec}\n• *Harga*: ${formatRp(price)}\n\nMohon info ketersediaan slot, terima kasih!`;
+            const waUrl = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(text)}`;
+            openModal(`Pesanan Anda untuk ${productTitle} (${sizeKey} - ${formatRp(price)}) siap diteruskan ke WhatsApp Admin Consultation kami (Dimas: +62 889-8919-5951).`, 'Konfirmasi Pesanan', waUrl);
+        }
+
+        function orderSimulatorViaWA() {
+            const catObj = officialCatalog.find(c => c.id === simState.category);
+            let sizeData = catObj.sizes[simState.size] || Object.values(catObj.sizes)[0];
+            let addonsNames = [];
+            let addonsTotal = 0;
+            document.querySelectorAll('.sim-addon:checked').forEach(cb => {
+                addonsNames.push(cb.dataset.name);
+                addonsTotal += parseInt(cb.dataset.price);
+            });
+
+            let basePrice = sizeData.price;
+            let prodLabel = `${catObj.title} (${simState.size})`;
+            let specLabel = sizeData.spec;
+
+            if (simState.category === 'craftday') {
+                const totalStems = getTotalCraftdayStems();
+                basePrice = (totalStems * 5000) + (simState.craftdayWrap ? 10000 : 0);
+                const stemParts = [];
+                if (simState.craftdayStems.gerbera > 0) stemParts.push(`${simState.craftdayStems.gerbera} Gerbera`);
+                if (simState.craftdayStems.rose > 0) stemParts.push(`${simState.craftdayStems.rose} Rose`);
+                if (simState.craftdayStems.aster > 0) stemParts.push(`${simState.craftdayStems.aster} Peacock Aster`);
+                if (simState.craftdayStems.krisan > 0) stemParts.push(`${simState.craftdayStems.krisan} Krisan`);
+
+                prodLabel = `Bloom n Bliss Craftday (${totalStems} Tangkai Custom)`;
+                specLabel = `${stemParts.join(', ')} + ${simState.craftdayWrap ? 'Full Paper Flower (+10K)' : 'Plastik Sleeve Bening (+0)'}`;
+            }
+
+            const total = basePrice + addonsTotal;
+            const cardText = document.getElementById('sim-greeting-input').value;
+
+            const text = `Halo Admin Bloom & Bliss (Kak Dimas), saya telah merancang produk di *Studio Simulasi DIY Website*:\n\n• *Produk*: ${prodLabel}\n• *Komposisi*: ${specLabel}\n• *Warna Pita & Paper Flower*: ${simState.wrapName}\n• *Item Tambahan*: ${addonsNames.length ? addonsNames.join(', ') : 'Tidak ada'}\n• *Kartu Ucapan*: "${cardText}"\n• *Total Estimasi*: ${formatRp(total)}\n\nSaya ingin memesan desain ini!`;
+            const waUrl = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(text)}`;
+            openModal(`Desain simulasi Anda (${prodLabel}, Total ${formatRp(total)}) telah siap dikirimkan ke WhatsApp Admin CRM kami.`, 'Desain Siap Dipesan!', waUrl);
+        }
+
+        function bookDIYFromSimulator() {
+            const catObj = officialCatalog.find(c => c.id === simState.category);
+            if (simState.category === 'craftday') {
+                const totalStems = getTotalCraftdayStems();
+                document.getElementById('book-product').value = `Craftday Custom (${totalStems} Tangkai) - Warna ${simState.wrapName}`;
+            } else {
+                document.getElementById('book-product').value = `${catObj.title} (${simState.size}) - Warna ${simState.wrapName}`;
+            }
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function submitBooking(e) {
+            e.preventDefault();
+            const name = document.getElementById('book-name').value;
+            const wa = document.getElementById('book-wa').value;
+            const service = document.getElementById('book-service').value;
+            const prod = document.getElementById('book-product').value || 'Konsultasi di Tempat';
+            const date = document.getElementById('book-date').value;
+            const time = document.getElementById('book-time').value;
+
+            const text = `Halo Admin Bloom & Bliss (Kak Dimas), saya ingin melakukan *Reservasi Jadwal O2O*:\n\n• *Nama*: ${name}\n• *No. WA*: ${wa}\n• *Layanan*: ${service}\n• *Produk/Paket*: ${prod}\n• *Tanggal*: ${date}\n• *Jam Kedatangan*: ${time} WIB\n\nTerima kasih!`;
+            const waUrl = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(text)}`;
+            openModal(`Reservasi atas nama ${name} pada tanggal ${date} pukul ${time} WIB berhasil dicatat. Klik tombol di bawah untuk mengirim konfirmasi langsung ke WhatsApp Admin (Dimas).`, 'Reservasi O2O Berhasil!', waUrl);
+        }
+
+        // Mobile Menu Toggle & Initialization
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        document.querySelectorAll('.mobile-link').forEach(l => {
+            l.addEventListener('click', () => document.getElementById('mobile-menu').classList.add('hidden'));
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Restore saved theme preference (Light / Dark)
+            const savedTheme = localStorage.getItem('bloom_theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+                updateThemeIcons(true);
+            }
+
+            // Set default booking date to tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('book-date').value = tomorrow.toISOString().split('T')[0];
+
+            renderCatalogGrid('all');
+            selectSimCategory('craftday');
+
+            // Auto-login jika sebelumnya sudah pernah masuk di perangkat ini
+            const savedMemberWA = localStorage.getItem('bloom_active_member_wa');
+            const db = loadMemberDatabase();
+            if (savedMemberWA && db[savedMemberWA]) {
+                activeMember = db[savedMemberWA];
+            }
+            syncMemberUI();
+        });
+    </script>
+</body>
+</html>
